@@ -1,0 +1,25 @@
+How to start the project
+
+1. Create a folder on your desktop
+
+2. Download this repository code and insert it into the just-created folder
+
+3. Open Visual Studio Code, press "Open Folder" and select your folder with this project
+
+-----> NOTE (Don't forget to install Python and Django packs on VS Code)
+
+4. Click the Search field and type -> "  >Python: Create Environment    " <- press Enter
+
+5. Select ->    Venv    <- press Enter
+
+6. Select the latest Python version you have on your PC or laptop, and press Enter
+
+7. When you downloaded the .venv to your project, open Terminal
+
+8. In Terminal, open Git Bash, and when you see the (.venv) icon, type or (copy/paste) the next commands
+
+------>   cd studyhub
+------>   pip install django
+------>   python manage.py runserver
+ 
+9. Here you go! Enjoy testing the project C:
