@@ -1,0 +1,2 @@
+# This is my final project on Python (Django) platform named StudyHub. Mainly, it is a little website that is designed for students and their teachers to help them work with each other online. Teachers are here to offer the files with tasks for their students, whereas students are here to work on these tasks.
+# You can download the code; see the instructions on how to start it in the .txt file instructions.txt right in this repository. 
