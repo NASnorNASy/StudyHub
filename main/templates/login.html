@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/login_styles.css' %}" />
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="login-container">
+      <div class="logo">
+        <i class="fas fa-book-open"></i>
+      </div>
+
+      <div class="title">
+        <h1>StudyHub</h1>
+        <p>Платформа навчальних матеріалів</p>
+      </div>
+
+      <div class="login-form">
+        <div class="form-group">
+          <label for="role-select">Оберіть роль для демо:</label>
+          <select id="role-select" class="role-select">
+            <option value="student" selected>Студент</option>
+            <option value="teacher">Викладач</option>
+            <option value="admin">Адміністратор</option>
+          </select>
+        </div>
+
+        <a href="{% url 'home-student' %}" class="login-button-link">
+          <button class="login-button">
+            <i class="fas fa-sign-in-alt"></i>
+            Увійти
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

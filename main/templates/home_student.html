@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/home_student_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-name">Іван Петренко</div>
+        <div class="user-role">Студент</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Мої курси</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span class="nav-text">Всі курси</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Мої роботи</span>
+        </a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="logout-text">Вийти</span>
+      </a>
+    </aside>
+
+    <!-- Основний вміст -->
+    <main class="main-content">
+      <h1 class="page-title">Мої курси</h1>
+
+      <!-- Контейнер курсів -->
+      <div class="courses-container">
+        <!-- Перша картка курсу -->
+        <div class="course-card">
+          <div class="course-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <div class="course-info">
+            <h2 class="course-title">Основи програмування на Python</h2>
+            <div class="course-teacher">
+              <i class="fas fa-user-tie"></i>
+              <span>Викладач: Андрій Шевченко</span>
+            </div>
+            <p class="course-description">Навчіться програмувати з нуля за допомогою Python. Основи синтаксису, структури даних та розв'язання практичних завдань.</p>
+            <div class="badge">
+              <i class="fas fa-check-circle"></i>
+              <span>Ви зареєстровані ✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Друга картка курсу -->
+        <div class="course-card">
+          <div class="course-icon">
+            <i class="fab fa-react"></i>
+          </div>
+          <div class="course-info">
+            <h2 class="course-title">Веб-розробка з React</h2>
+            <div class="course-teacher">
+              <i class="fas fa-user-tie"></i>
+              <span>Викладач: Олена Коваленко</span>
+            </div>
+            <p class="course-description">Створюйте сучасні веб-додатки за допомогою React та TypeScript. Робота з компонентами, станом та API.</p>
+            <div class="badge">
+              <i class="fas fa-check-circle"></i>
+              <span>Ви зареєстровані ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Блок прогресу курсу -->
+      <div class="progress-container">
+        <div class="progress-header">
+          <div class="progress-title">
+            <i class="fas fa-chart-line"></i>
+            <span>Прогрес курсу</span>
+          </div>
+          <div class="progress-percentage">50%</div>
+        </div>
+
+        <p class="progress-text">Пройдено курсу</p>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-box stat-completed">
+            <div class="stat-number">1</div>
+            <div class="stat-label">
+              <i class="fas fa-check-circle"></i>
+              <span>Виконано</span>
+            </div>
+          </div>
+
+          <div class="stat-box stat-remaining">
+            <div class="stat-number">1</div>
+            <div class="stat-label">
+              <i class="fas fa-clock"></i>
+              <span>Залишилось</span>
+            </div>
+          </div>
+
+          <div class="stat-box stat-average">
+            <div class="stat-number">95</div>
+            <div class="stat-label">
+              <i class="fas fa-star"></i>
+              <span>Середній бал</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка допомоги -->
+      <div class="help-btn">
+        <i class="fas fa-question"></i>
+      </div>
+    </main>
+  </body>
+</html>
