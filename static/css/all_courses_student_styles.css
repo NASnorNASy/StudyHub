@@ -42,7 +42,6 @@ body {
     color: var(--black);
 }
 
-/* ===== Ліва панель ===== */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -168,7 +167,7 @@ body {
 }
 
 
-/* ===== Основний контент ===== */
+/* Стилі для основного контенту */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -191,169 +190,87 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-/* ===== Картки курсів ===== */
-.courses-container {
+.courses-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 48px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
+/* Стилі для карток курсів */
 .course-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-light);
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.course-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
 .course-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #6b2ff7, #a84bff);
+    width: 60px;
+    height: 60px;
+    background-color: #f0e8ff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: white;
-}
-
-.course-info {
-    flex: 1;
+    margin-right: 18px;
+    flex-shrink: 0;
 }
 
 .course-title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
+    color: #1a1a1a;
     margin-bottom: 8px;
-    color: var(--black);
 }
 
 .course-teacher {
-    color: var(--gray-dark);
-    font-size: 15px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 14px;
+    color: #5a5a5a;
 }
 
 .course-description {
-    color: var(--gray);
+    font-size: 15px;
     line-height: 1.5;
-    margin-bottom: 16px;
-}
-
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--green-light);
-    color: var(--green);
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ===== Прогрес курсу ===== */
-.progress-container {
-    background: linear-gradient(135deg, #6b2ff7, #a84bff, #ff6bcb);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: var(--shadow-medium);
-    margin-bottom: 48px;
-    color: white;
-}
-
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.progress-title {
-    font-size: 22px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.progress-percentage {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.progress-text {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-}
-
-.progress-bar {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    margin-bottom: 32px;
+    color: #5a5a5a;
+    margin-bottom: 25px;
+    height: 45px;
     overflow: hidden;
 }
 
-.progress-fill {
-    height: 100%;
-    width: 10%;
-    background: white;
-    border-radius: 8px;
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.stat-box {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 20px;
-    height: 90px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.stat-number {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.stat-label {
-    font-size: 14px;
-    opacity: 0.9;
-    display: flex;
+.enroll-btn {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    background-color: #8a2afd;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.stat-completed .stat-number {
-    color: #00ff9d;
+.enroll-btn:hover {
+    background-color: #7b21f5;
+    box-shadow: 0 4px 12px rgba(138, 42, 253, 0.3);
 }
 
-.stat-remaining .stat-number {
-    color: #ffbe76;
-}
-
-.stat-average .stat-number {
-    color: #00ff9d;
+.enroll-icon {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
 }

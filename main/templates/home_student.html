@@ -1,11 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My courses</title>
+    <title>Мої курси</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,55 +16,54 @@
     <aside class="sidebar">
       <div class="logo">
         <div class="logo-icon">
-          <i class="fas fa-book"></i>
+          <i class="fas fa-book-open"></i>
         </div>
         <div class="logo-text">StudyHub</div>
       </div>
 
       <div class="user-card">
-        <div class="user-avatar">
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="user-name">Іван Петренко</div>
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
         <div class="user-role">Студент</div>
       </div>
 
       <nav class="nav-menu">
-        <a href="#" class="nav-item active">
+        <a href="{% url 'home-student' %}" class="nav-item active">
           <i class="fas fa-graduation-cap"></i>
           <span class="nav-text">Мої курси</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="{% url 'all-courses-student' %}" class="nav-item">
           <i class="fas fa-list"></i>
           <span class="nav-text">Всі курси</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="{% url 'materials-student' %}" class="nav-item">
           <i class="fas fa-folder-open"></i>
           <span class="nav-text">Матеріали</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="{% url 'assignments-student' %}" class="nav-item">
           <i class="fas fa-tasks"></i>
           <span class="nav-text">Завдання</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="{% url 'my-works-student' %}" class="nav-item">
           <i class="fas fa-briefcase"></i>
           <span class="nav-text">Мої роботи</span>
         </a>
       </nav>
 
-      <a href="{% url 'login' %}" class="logout-btn">
-        <i class="fas fa-sign-out-alt"></i>
-        <span class="logout-text">Вийти</span>
-      </a>
+      <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn" style="background: none; border: none; cursor: pointer;">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
     </aside>
 
-    <!-- Основний вміст -->
     <main class="main-content">
-      <h1 class="page-title">Мої курси</h1>
+      <div class="main-header">
+        <h1 class="page-title">Мої курси</h1>
+      </div>
 
-      <!-- Контейнер курсів -->
       <div class="courses-container">
-        <!-- Перша картка курсу -->
         <div class="course-card">
           <div class="course-icon">
             <i class="fab fa-python"></i>
@@ -83,7 +82,6 @@
           </div>
         </div>
 
-        <!-- Друга картка курсу -->
         <div class="course-card">
           <div class="course-icon">
             <i class="fab fa-react"></i>
@@ -103,7 +101,6 @@
         </div>
       </div>
 
-      <!-- Блок прогресу курсу -->
       <div class="progress-container">
         <div class="progress-header">
           <div class="progress-title">
@@ -144,11 +141,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Кнопка допомоги -->
-      <div class="help-btn">
-        <i class="fas fa-question"></i>
       </div>
     </main>
   </body>

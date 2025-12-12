@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main",
+    "main.apps.MainConfig",
 ]
 
 MIDDLEWARE = [
@@ -106,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "uk"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Kyiv"
 
 USE_I18N = True
 
@@ -117,3 +117,44 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home-student"
+LOGOUT_REDIRECT_URL = "login"
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "null": {
+            "class": "logging.NullHandler",
+        },
+        "signals_file": {
+            "class": "logging.FileHandler",
+            "filename": str(BASE_DIR / "signals.log"),
+            "formatter": "default",
+        },
+    },
+    "formatters": {
+        "default": {
+            "format": "[{asctime}] {levelname} {name}: {message}",
+            "style": "{",
+        }
+    },
+    "loggers": {
+        "django.server": {
+            "handlers": ["null"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "signals": {
+            "handlers": ["signals_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}

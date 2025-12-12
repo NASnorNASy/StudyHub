@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Завдання</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/assignments_student_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">Іван Петренко</div>
+        <div class="user-role">Студент</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-student' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Мої курси</span>
+        </a>
+        <a href="{% url 'all-courses-student' %}" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span class="nav-text">Всі курси</span>
+        </a>
+        <a href="{% url 'materials-student' %}" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-student' %}" class="nav-item active">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'my-works-student' %}" class="nav-item">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Мої роботи</span>
+        </a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Вийти</span>
+      </a>
+    </aside>
+
+    <!-- Основна область контенту -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Мої завдання</h1>
+      </div>
+
+      <section class="tasks-container">
+        <div class="tasks-grid">
+          <!-- Картка 1: Здане завдання -->
+          <div class="task-card">
+            <div class="task-header">
+              <div class="task-status status-success">
+                <i class="fas fa-check-circle"></i>
+                <span>Роботу здано</span>
+              </div>
+            </div>
+
+            <div class="task-title">
+              <div class="task-icon icon-success">
+                <i class="fas fa-check"></i>
+              </div>
+              <div class="task-details">
+                <h3>calculator.py</h3>
+                <p class="task-course">Програмування на Python</p>
+              </div>
+            </div>
+
+            <p class="task-description">Реалізуйте програму калькулятора з підтримкою основних арифметичних операцій.</p>
+
+            <div class="task-submission">
+              <div class="submission-info">
+                <i class="far fa-clock"></i>
+                <span>Здано: <span class="submission-date">10.12.2025, 14:20:00</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Картка 2: Завдання, що очікує виконання -->
+          <div class="task-card">
+            <div class="task-header">
+              <div class="task-status status-pending">
+                <i class="fas fa-clock"></i>
+                <span>Очікує виконання</span>
+              </div>
+            </div>
+
+            <div class="task-title">
+              <div class="task-icon icon-pending">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="task-details">
+                <h3>Проєкт. Todo App</h3>
+                <p class="task-course">Веб-розробка з React</p>
+              </div>
+            </div>
+
+            <p class="task-description">Створіть React додаток для управління завданнями з функціями додавання, редагування та видалення.</p>
+
+            <div class="task-deadline">
+              <i class="far fa-calendar-alt"></i>
+              <span>Дедлайн: <span class="deadline-date">25.12.2025</span></span>
+            </div>
+
+            <div class="task-submission">
+              <div class="file-upload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Оберіть файл для завантаження</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Картка 3: Завдання, що очікує виконання -->
+          <div class="task-card">
+            <div class="task-header">
+              <div class="task-status status-pending">
+                <i class="fas fa-clock"></i>
+                <span>Очікує виконання</span>
+              </div>
+            </div>
+
+            <div class="task-title">
+              <div class="task-icon icon-pending">
+                <i class="fas fa-cubes"></i>
+              </div>
+              <div class="task-details">
+                <h3>Компонентна архітектура</h3>
+                <p class="task-course">Веб-розробка з React</p>
+              </div>
+            </div>
+
+            <p class="task-description">Розробіть складний компонент з підкомпонентами та управлінням станом через Context API.</p>
+
+            <div class="task-deadline">
+              <i class="far fa-calendar-alt"></i>
+              <span>Дедлайн: <span class="deadline-date">30.12.2025</span></span>
+            </div>
+
+            <div class="task-submission">
+              <div class="file-upload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Оберіть файл для завантаження</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

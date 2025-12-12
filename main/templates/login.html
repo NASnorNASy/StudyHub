@@ -1,11 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Увійти до StudyHub</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,21 +29,47 @@
       </div>
 
       <div class="login-form">
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        
+        <!-- IMPORTANT: Add this hidden next field -->
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% else %}
+            <input type="hidden" name="next" value="home-student">
+        {% endif %}
+        
+        {% if form.errors %}
+        <div class="error-message">
+            <p>Невірне ім'я користувача або пароль. Спробуйте ще раз.</p>
+        </div>
+        {% endif %}
+        
         <div class="form-group">
-          <label for="role-select">Оберіть роль для демо:</label>
-          <select id="role-select" class="role-select">
-            <option value="student" selected>Студент</option>
-            <option value="teacher">Викладач</option>
-            <option value="admin">Адміністратор</option>
-          </select>
+            <label for="id_username">Ім'я користувача:</label>
+            <input type="text" 
+                   name="username" 
+                   id="id_username" 
+                   class="form-input" 
+                   placeholder="Введіть ім'я користувача" 
+                   required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password">Пароль:</label>
+            <input type="password" 
+                   name="password" 
+                   id="id_password" 
+                   class="form-input" 
+                   placeholder="Введіть пароль" 
+                   required>
         </div>
 
-        <a href="{% url 'home-student' %}" class="login-button-link">
-          <button class="login-button">
+        <button class="login-button" type="submit">
             <i class="fas fa-sign-in-alt"></i>
             Увійти
-          </button>
-        </a>
+        </button>
+    </form>
       </div>
     </div>
   </body>

@@ -1,5 +1,4 @@
 :root {
-    /* Кольорова палітра */
     --primary-purple: #6b2ff7;
     --primary-purple-light: #a84bff;
     --bg-gradient: linear-gradient(135deg, #f7f9fc 0%, #f0f3ff 100%);
@@ -13,18 +12,15 @@
     --orange: #f0932b;
     --blue: #0984e3;
 
-    /* Тіні */
     --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
     --shadow-strong: 0 14px 24px rgba(0, 0, 0, 0.25);
 
-    /* Закруглення */
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 20px;
     --radius-xl: 26px;
 
-    /* Розміри */
     --sidebar-width: 260px;
 }
 
@@ -42,7 +38,6 @@ body {
     color: var(--black);
 }
 
-/* ===== Ліва панель ===== */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -168,7 +163,6 @@ body {
 }
 
 
-/* ===== Основний контент ===== */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -191,169 +185,162 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-/* ===== Картки курсів ===== */
-.courses-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 48px;
+
+.tasks-container {
+    padding: 30px 40px;
 }
 
-.course-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-light);
+
+.task-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #f0f0f0;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.task-header {
     display: flex;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 15px;
 }
 
-.course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
-}
-
-.course-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #6b2ff7, #a84bff);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-}
-
-.course-info {
-    flex: 1;
-}
-
-.course-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--black);
-}
-
-.course-teacher {
-    color: var(--gray-dark);
-    font-size: 15px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.course-description {
-    color: var(--gray);
-    line-height: 1.5;
-    margin-bottom: 16px;
-}
-
-.badge {
+.task-status {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: var(--green-light);
-    color: var(--green);
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
 }
 
-/* ===== Прогрес курсу ===== */
-.progress-container {
-    background: linear-gradient(135deg, #6b2ff7, #a84bff, #ff6bcb);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: var(--shadow-medium);
-    margin-bottom: 48px;
+.status-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-pending {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.task-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.task-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.icon-success {
+    background-color: #4CAF50;
     color: white;
 }
 
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+.icon-pending {
+    background-color: #FFA000;
+    color: white;
 }
 
-.progress-title {
-    font-size: 22px;
+.task-details h3 {
+    font-size: 20px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
-.progress-percentage {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.progress-text {
+.task-course {
     font-size: 14px;
-    opacity: 0.9;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.task-description {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
     margin-bottom: 20px;
 }
 
-.progress-bar {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    margin-bottom: 32px;
-    overflow: hidden;
+.task-deadline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
 }
 
-.progress-fill {
-    height: 100%;
-    width: 10%;
-    background: white;
-    border-radius: 8px;
+.task-deadline i {
+    margin-right: 8px;
+    color: #FFA000;
 }
 
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.deadline-date {
+    font-weight: 500;
 }
 
-.stat-box {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 20px;
-    height: 90px;
+.task-submission {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-.stat-number {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.stat-label {
+.submission-info {
     font-size: 14px;
-    opacity: 0.9;
+    color: #666;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-.stat-completed .stat-number {
-    color: #00ff9d;
+.submission-info i {
+    margin-right: 8px;
+    color: #4CAF50;
 }
 
-.stat-remaining .stat-number {
-    color: #ffbe76;
+.submission-date {
+    font-weight: 500;
+    color: #2e7d32;
 }
 
-.stat-average .stat-number {
-    color: #00ff9d;
+.file-upload {
+    border: 2px dashed #d1c4e9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f7fd;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-upload:hover {
+    background-color: #f3e5f5;
+    border-color: #7b1fa2;
+}
+
+.file-upload i {
+    font-size: 28px;
+    color: #7b1fa2;
+    margin-bottom: 10px;
+}
+
+.file-upload p {
+    color: #7b1fa2;
+    font-weight: 500;
+    font-size: 16px;
 }

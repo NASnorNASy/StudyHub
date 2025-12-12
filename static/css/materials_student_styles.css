@@ -42,7 +42,6 @@ body {
     color: var(--black);
 }
 
-/* ===== Ліва панель ===== */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -167,8 +166,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
-/* ===== Основний контент ===== */
+/* Основна область */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -191,169 +189,127 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-/* ===== Картки курсів ===== */
-.courses-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 48px;
+.search-container {
+    position: relative;
+    width: 300px;
 }
 
-.course-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-light);
+.search-input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #7b1fa2;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Картки матеріалів */
+.materials-list {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 20px;
+}
+
+.material-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
+.material-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
-.course-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #6b2ff7, #a84bff);
-    border-radius: 50%;
+.card-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-}
-
-.course-info {
-    flex: 1;
-}
-
-.course-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--black);
-}
-
-.course-teacher {
-    color: var(--gray-dark);
-    font-size: 15px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.course-description {
-    color: var(--gray);
-    line-height: 1.5;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 16px;
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--green-light);
-    color: var(--green);
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ===== Прогрес курсу ===== */
-.progress-container {
-    background: linear-gradient(135deg, #6b2ff7, #a84bff, #ff6bcb);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: var(--shadow-medium);
-    margin-bottom: 48px;
-    color: white;
-}
-
-.progress-header {
+.card-title-section {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: flex-start;
 }
 
-.progress-title {
-    font-size: 22px;
-    font-weight: 600;
+.material-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #e8f4fd;
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.progress-percentage {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.progress-text {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-}
-
-.progress-bar {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    margin-bottom: 32px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 10%;
-    background: white;
-    border-radius: 8px;
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.stat-box {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 20px;
-    height: 90px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
+    margin-right: 16px;
+    color: #1976d2;
+    font-size: 22px;
 }
 
-.stat-number {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 4px;
+.material-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
 }
 
-.stat-label {
+.material-subtitle {
     font-size: 14px;
-    opacity: 0.9;
+    color: #666;
+}
+
+.material-count {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    min-width: 60px;
 }
 
-.stat-completed .stat-number {
-    color: #00ff9d;
+.material-description {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
-.stat-remaining .stat-number {
-    color: #ffbe76;
+.material-link {
+    display: flex;
+    align-items: center;
+    color: #7b1fa2;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
 }
 
-.stat-average .stat-number {
-    color: #00ff9d;
+.material-link:hover {
+    color: #4a148c;
+}
+
+.material-link i {
+    margin-right: 8px;
 }

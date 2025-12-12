@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Матеріали</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/materials_student_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">Іван Петренко</div>
+        <div class="user-role">Студент</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-student' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Мої курси</span>
+        </a>
+        <a href="{% url 'all-courses-student' %}" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span class="nav-text">Всі курси</span>
+        </a>
+        <a href="{% url 'materials-student' %}" class="nav-item active">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-student' %}" class="nav-item">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'my-works-student' %}" class="nav-item">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Мої роботи</span>
+        </a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Вийти</span>
+      </a>
+    </aside>
+
+    <!-- Основна область -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Навчальні матеріали</h1>
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Пошук матеріалів..." />
+        </div>
+      </div>
+
+      <div class="materials-list">
+        <!-- Картка матеріалу 1 -->
+        <div class="material-card">
+          <div class="card-header">
+            <div class="card-title-section">
+              <div class="material-icon">
+                <i class="fas fa-file-code"></i>
+              </div>
+              <div>
+                <div class="material-title">Вступ до Python</div>
+                <div class="material-subtitle">Основи програмування на Python</div>
+              </div>
+            </div>
+            <div class="material-count">2</div>
+          </div>
+          <p class="material-description">Перші кроки: встановлення, синтаксис, змінні. Огляд основних конструкцій мови та приклади коду.</p>
+          <a href="#" class="material-link">
+            <i class="fas fa-download"></i>
+            python_intro.pdf
+          </a>
+        </div>
+
+        <!-- Картка матеріалу 2 -->
+        <div class="material-card">
+          <div class="card-header">
+            <div class="card-title-section">
+              <div class="material-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <div>
+                <div class="material-title">Бази даних та SQL</div>
+                <div class="material-subtitle">Основні принципи роботи з даними</div>
+              </div>
+            </div>
+            <div class="material-count">5</div>
+          </div>
+          <p class="material-description">Основи реляційних баз даних, мова запитів SQL, проектування таблиць та взаємодія з даними.</p>
+          <a href="#" class="material-link">
+            <i class="fas fa-download"></i>
+            databases_sql.pdf
+          </a>
+        </div>
+
+        <!-- Картка матеріалу 3 -->
+        <div class="material-card">
+          <div class="card-header">
+            <div class="card-title-section">
+              <div class="material-icon">
+                <i class="fas fa-sitemap"></i>
+              </div>
+              <div>
+                <div class="material-title">Алгоритми та структури даних</div>
+                <div class="material-subtitle">Основи ефективного програмування</div>
+              </div>
+            </div>
+            <div class="material-count">0</div>
+          </div>
+          <p class="material-description">Вивчення основних алгоритмів сортування, пошуку та структур даних: масиви, списки, стеки, черги, дерева.</p>
+          <a href="#" class="material-link">
+            <i class="fas fa-download"></i>
+            algorithms_data_structures.pdf
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

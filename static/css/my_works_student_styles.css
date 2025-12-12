@@ -42,7 +42,6 @@ body {
     color: var(--black);
 }
 
-/* ===== Ліва панель ===== */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -168,7 +167,7 @@ body {
 }
 
 
-/* ===== Основний контент ===== */
+/* Основний контент */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -191,169 +190,123 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-/* ===== Картки курсів ===== */
-.courses-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 48px;
+/* Картки робіт */
+.works-container {
+    max-width: 900px;
 }
 
-.course-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-light);
+.work-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-bottom: 25px;
     display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #f0f0f0;
 }
 
-.course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-medium);
+.work-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.course-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #6b2ff7, #a84bff);
-    border-radius: 50%;
+.work-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #F5F3FF;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: white;
+    margin-right: 25px;
+    flex-shrink: 0;
 }
 
-.course-info {
-    flex: 1;
+.work-icon i {
+    font-size: 28px;
+    color: #6A5ACD;
 }
 
-.course-title {
+.work-info {
+    flex-grow: 1;
+}
+
+.work-title {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--black);
+    color: #333;
 }
 
-.course-teacher {
-    color: var(--gray-dark);
-    font-size: 15px;
-    margin-bottom: 12px;
+.work-course {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.work-details {
     display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.course-description {
-    color: var(--gray);
-    line-height: 1.5;
-    margin-bottom: 16px;
-}
-
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--green-light);
-    color: var(--green);
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ===== Прогрес курсу ===== */
-.progress-container {
-    background: linear-gradient(135deg, #6b2ff7, #a84bff, #ff6bcb);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: var(--shadow-medium);
-    margin-bottom: 48px;
-    color: white;
-}
-
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.progress-title {
-    font-size: 22px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.progress-percentage {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.progress-text {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-}
-
-.progress-bar {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    margin-bottom: 32px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 10%;
-    background: white;
-    border-radius: 8px;
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
     gap: 20px;
+    margin-top: 12px;
 }
 
-.stat-box {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 20px;
-    height: 90px;
+.detail-item {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    color: #777;
+    font-size: 15px;
+}
+
+.detail-item i {
+    margin-right: 8px;
+    color: #aaa;
+}
+
+.work-grade {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.grade-badge {
+    background-color: #E0FFE0;
+    color: #2E7D32;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.stat-number {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.stat-label {
-    font-size: 14px;
-    opacity: 0.9;
+.work-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
 }
 
-.stat-completed .stat-number {
-    color: #00ff9d;
+.download-btn {
+    background-color: #6A5ACD;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
 }
 
-.stat-remaining .stat-number {
-    color: #ffbe76;
+.download-btn:hover {
+    background-color: #5A4ABC;
 }
 
-.stat-average .stat-number {
-    color: #00ff9d;
+.download-btn i {
+    margin-right: 8px;
 }

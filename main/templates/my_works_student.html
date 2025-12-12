@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мої роботи</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/my_works_student_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">Іван Петренко</div>
+        <div class="user-role">Студент</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-student' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Мої курси</span>
+        </a>
+        <a href="{% url 'all-courses-student' %}" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span class="nav-text">Всі курси</span>
+        </a>
+        <a href="{% url 'materials-student' %}" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-student' %}" class="nav-item">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'my-works-student' %}" class="nav-item active">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Мої роботи</span>
+        </a>
+      </nav>
+
+      <a href="{% url 'login' %}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Вийти</span>
+      </a>
+    </aside>
+    <!-- Основний контент -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Мої роботи</h1>
+      </div>
+
+      <div class="works-container">
+        <!-- Картка 1 -->
+        <div class="work-card">
+          <div class="work-icon">
+            <i class="far fa-file-code"></i>
+          </div>
+
+          <div class="work-info">
+            <h3 class="work-title">Лабораторна робота №1</h3>
+            <p class="work-course">Основи програмування на Python</p>
+
+            <div class="work-details">
+              <div class="detail-item">
+                <i class="fas fa-file-code"></i>
+                Файл: factorial.py
+              </div>
+              <div class="detail-item">
+                <i class="far fa-calendar-alt"></i>
+                Здано: 15.03.2023
+              </div>
+            </div>
+          </div>
+
+          <div class="work-grade">
+            <div class="grade-badge">95</div>
+          </div>
+
+          <div class="work-actions">
+            <button class="download-btn">
+              <i class="fas fa-download"></i>
+              Завантажити
+            </button>
+          </div>
+        </div>
+
+        <!-- Картка 2 -->
+        <div class="work-card">
+          <div class="work-icon">
+            <i class="far fa-file-code"></i>
+          </div>
+
+          <div class="work-info">
+            <h3 class="work-title">Лабораторна робота №2</h3>
+            <p class="work-course">Основи програмування на Python</p>
+
+            <div class="work-details">
+              <div class="detail-item">
+                <i class="fas fa-file-code"></i>
+                Файл: calculator.py
+              </div>
+              <div class="detail-item">
+                <i class="far fa-calendar-alt"></i>
+                Здано: 22.03.2023
+              </div>
+            </div>
+          </div>
+
+          <div class="work-actions">
+            <button class="download-btn">
+              <i class="fas fa-download"></i>
+              Завантажити
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

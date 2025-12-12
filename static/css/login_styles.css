@@ -209,36 +209,3 @@ body {
     font-weight: 600;
 }
 
-
-@media (max-width: 768px) {
-    .login-container {
-        padding: 36px 28px;
-        max-width: 90%;
-    }
-
-    .blob-1,
-    .blob-2,
-    .blob-3 {
-        display: none;
-    }
-
-    .title h1 {
-        font-size: 28px;
-    }
-
-    .title p {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .login-container {
-        padding: 32px 24px;
-        max-width: 95%;
-    }
-
-    .title h1 {
-        font-size: 24px;
-    }
-}
-
