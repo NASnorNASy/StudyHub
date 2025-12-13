@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyHub - Завдання</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/assignments_teacher_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-role">Викладач</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-teacher' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'materials-teacher' %}" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-teacher' %}" class="nav-item active">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'students-works-teacher' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Роботи студентів</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <!-- Основний контент -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Завдання</h1>
+        <button class="btn-create">
+          <i class="fas fa-plus"></i>
+          <span>Створити завдання</span>
+        </button>
+      </div>
+
+      <section class="tasks-container">
+        <!-- Картка завдання 1 -->
+        <article class="task-card">
+          <div class="task-icon">
+            <i class="far fa-calendar-alt"></i>
+          </div>
+
+          <div class="task-content">
+            <h2 class="task-title">Лабораторна робота №1</h2>
+            <p class="task-subtitle">Основи програмування на Python</p>
+            <p class="task-description">Створіть програму для обчислення факторіала числа, введеного користувачем. Програма має перевіряти коректність введення даних та обробляти винятки.</p>
+
+            <div class="task-footer">
+              <div class="task-deadline">
+                <i class="far fa-calendar"></i>
+                <span>Дедлайн: 15.12.2025</span>
+              </div>
+              <div class="task-status">Залишилось 2 дні</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Картка завдання 2 -->
+        <article class="task-card">
+          <div class="task-icon">
+            <i class="far fa-calendar-alt"></i>
+          </div>
+
+          <div class="task-content">
+            <h2 class="task-title">Курсова робота</h2>
+            <p class="task-subtitle">Бази даних та SQL</p>
+            <p class="task-description">Розробіть базу даних для системи управління бібліотекою. Включіть таблиці для книг, читачів, видач та повернень. Напишіть SQL-запити для отримання статистики.</p>
+
+            <div class="task-footer">
+              <div class="task-deadline">
+                <i class="far fa-calendar"></i>
+                <span>Дедлайн: 20.12.2025</span>
+              </div>
+              <div class="task-status">Залишилось 7 днів</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Картка завдання 3 -->
+        <article class="task-card">
+          <div class="task-icon">
+            <i class="far fa-calendar-alt"></i>
+          </div>
+
+          <div class="task-content">
+            <h2 class="task-title">Практичне завдання</h2>
+            <p class="task-subtitle">Веб-розробка з HTML/CSS</p>
+            <p class="task-description">Створіть адаптивну веб-сторінку з використанням Flexbox або Grid. Сторінка повинна коректно відображатися на мобільних пристроях та планшетах.</p>
+
+            <div class="task-footer">
+              <div class="task-deadline">
+                <i class="far fa-calendar"></i>
+                <span>Дедлайн: 10.12.2025</span>
+              </div>
+              <div class="task-status">Термін виконано</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Картка завдання 4 -->
+        <article class="task-card">
+          <div class="task-icon">
+            <i class="far fa-calendar-alt"></i>
+          </div>
+
+          <div class="task-content">
+            <h2 class="task-title">Тест з алгоритмів</h2>
+            <p class="task-subtitle">Структури даних та алгоритми</p>
+            <p class="task-description">Розв'яжіть задачі на сортування та пошук у масивах. Проаналізуйте складність алгоритмів за часом та пам'яттю. Надайте рішення з коментарями.</p>
+
+            <div class="task-footer">
+              <div class="task-deadline">
+                <i class="far fa-calendar"></i>
+                <span>Дедлайн: 18.12.2025</span>
+              </div>
+              <div class="task-status">Залишилось 5 днів</div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

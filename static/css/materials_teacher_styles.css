@@ -42,6 +42,8 @@ body {
     color: var(--black);
 }
 
+
+/* Бокове меню */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -160,14 +162,17 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: var(--radius-md);
-    background: none; border: none; cursor: pointer; font-size: 16px;
+    background: none;
+    border: none;
+    font-size: 16px;
 }
 
 .logout-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Основна область */
+
+/* Основний контент */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -175,6 +180,8 @@ body {
     max-width: 1200px;
 }
 
+
+/* Header основного контенту */
 .page-title {
     font-size: 26px;
     font-weight: 600;
@@ -190,26 +197,32 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Поле пошуку */
 .search-container {
     position: relative;
-    width: 300px;
 }
 
 .search-input {
-    width: 100%;
-    padding: 12px 20px 12px 45px;
-    border: 1px solid #e0e0e0;
-    border-radius: 30px;
+    padding: 14px 20px 14px 48px;
+    border-radius: 50px;
+    border: 1px solid #E5E7EB;
+    width: 280px;
     font-size: 16px;
-    background-color: #f9f9f9;
-    transition: all 0.3s;
+    background-color: var(--text-white);
+    transition: var(--transition);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #7b1fa2;
-    background-color: white;
-    box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 3px rgba(108, 77, 255, 0.1);
 }
 
 .search-icon {
@@ -217,29 +230,51 @@ body {
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: #888;
+    color: var(--text-muted);
+}
+
+/* Кнопка додавання */
+.add-btn {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+    border: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.add-btn:hover {
+    background-color: var(--primary-purple-light);
+    box-shadow: 0 4px 12px rgba(108, 77, 255, 0.3);
 }
 
 /* Картки матеріалів */
-.materials-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.materials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
 }
 
 .material-card {
-    background-color: white;
-    border-radius: 12px;
+    background-color: var(--text-white);
+    border-radius: var(--border-radius);
     padding: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    transition: var(--transition);
 }
 
 .material-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* Верхній ряд картки */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -247,70 +282,153 @@ body {
     margin-bottom: 16px;
 }
 
-.card-title-section {
+.material-info {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
 }
 
 .material-icon {
     width: 48px;
     height: 48px;
-    background-color: #e8f4fd;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #6C4DFF, #8A3FFC);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 16px;
-    color: #1976d2;
-    font-size: 22px;
+    font-size: 20px;
+    color: var(--text-white);
+}
+
+.material-title-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .material-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
 .material-subtitle {
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
 }
 
-.material-count {
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-weight: 600;
-    color: #333;
-    font-size: 15px;
+/* Кнопки дій у картці */
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comments-btn {
+    position: relative;
+    background-color: rgba(108, 77, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--primary-purple);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
+    transition: var(--transition);
 }
 
-.material-description {
-    font-size: 15px;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.5;
+.comments-btn:hover {
+    background-color: rgba(108, 77, 255, 0.2);
 }
 
-.material-link {
+.comments-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+    font-size: 12px;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    color: #7b1fa2;
-    text-decoration: none;
+    justify-content: center;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #EF4444;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Опис матеріалу */
+.material-description {
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* Файл для завантаження */
+.file-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(108, 77, 255, 0.08);
+    border-radius: 50px;
+    padding: 12px 20px;
+    transition: var(--transition);
+}
+
+.file-container:hover {
+    background-color: rgba(108, 77, 255, 0.12);
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.file-icon {
+    color: var(--primary-purple);
+}
+
+.file-name {
     font-weight: 500;
     font-size: 15px;
-    transition: color 0.3s ease;
 }
 
-.material-link:hover {
-    color: #4a148c;
+.download-btn {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
 }
 
-.material-link i {
-    margin-right: 8px;
+.download-btn:hover {
+    background-color: var(--primary-purple-light);
+    transform: scale(1.05);
 }

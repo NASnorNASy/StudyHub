@@ -161,6 +161,9 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: var(--radius-md);
+    background: none;
+    border: none;
+    font-size: 16px;
 }
 
 .logout-btn:hover {
@@ -190,6 +193,7 @@ body {
     margin-bottom: 30px;
     border-bottom: 2px solid #e1e1e1;
 }
+
 
 /* ===== Картки курсів ===== */
 .courses-container {

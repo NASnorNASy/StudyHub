@@ -160,6 +160,7 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: var(--radius-md);
+    background: none; border: none; cursor: pointer; font-size: 16px;
 }
 
 .logout-btn:hover {
@@ -174,6 +175,7 @@ body {
     padding: 48px;
     max-width: 1200px;
 }
+
 
 .page-title {
     font-size: 26px;

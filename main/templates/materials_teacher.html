@@ -1,0 +1,204 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Матеріали | StudyHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/materials_teacher_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-role">Викладач</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-teacher' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'materials-teacher' %}" class="nav-item active">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-teacher' %}" class="nav-item">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'students-works-teacher' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Роботи студентів</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Матеріали</h1>
+        <div class="header-actions">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Пошук матеріалів..." />
+          </div>
+          <button class="add-btn">
+            <i class="fas fa-plus"></i>
+            <span>Додати матеріал</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Контейнер для карток матеріалів -->
+      <section class="materials-container">
+        <!-- Картка матеріалу 1 -->
+        <article class="material-card">
+          <div class="card-header">
+            <div class="material-info">
+              <div class="material-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <div class="material-title-container">
+                <h3 class="material-title">Вступ до Python</h3>
+                <p class="material-subtitle">Основи програмування на Python</p>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="comments-btn">
+                <i class="fas fa-comment"></i>
+                <span class="comments-count">2</span>
+              </button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <p class="material-description">Перші кроки: встановлення, синтаксис, змінні, типи даних та базові операції.</p>
+
+          <div class="file-container">
+            <div class="file-info">
+              <i class="fas fa-file-pdf file-icon"></i>
+              <span class="file-name">python_intro.pdf</span>
+            </div>
+            <button class="download-btn"><i class="fas fa-download"></i></button>
+          </div>
+        </article>
+
+        <!-- Картка матеріалу 2 -->
+        <article class="material-card">
+          <div class="card-header">
+            <div class="material-info">
+              <div class="material-icon">
+                <i class="fas fa-file-code"></i>
+              </div>
+              <div class="material-title-container">
+                <h3 class="material-title">Цикли та умови</h3>
+                <p class="material-subtitle">Управління потоком виконання</p>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="comments-btn">
+                <i class="fas fa-comment"></i>
+                <span class="comments-count">0</span>
+              </button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <p class="material-description">Вивчення умовних операторів if, elif, else та циклів for і while з прикладами.</p>
+
+          <div class="file-container">
+            <div class="file-info">
+              <i class="fas fa-file-pdf file-icon"></i>
+              <span class="file-name">loops_conditions.pdf</span>
+            </div>
+            <button class="download-btn"><i class="fas fa-download"></i></button>
+          </div>
+        </article>
+
+        <!-- Картка матеріалу 3 -->
+        <article class="material-card">
+          <div class="card-header">
+            <div class="material-info">
+              <div class="material-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <div class="material-title-container">
+                <h3 class="material-title">Основи React</h3>
+                <p class="material-subtitle">Сучасний фронтенд-фреймворк</p>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="comments-btn">
+                <i class="fas fa-comment"></i>
+                <span class="comments-count">2</span>
+              </button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <p class="material-description">Введення в React: компоненти, JSX, стан та пропси. Практичні приклади.</p>
+
+          <div class="file-container">
+            <div class="file-info">
+              <i class="fas fa-file-pdf file-icon"></i>
+              <span class="file-name">react_basics.pdf</span>
+            </div>
+            <button class="download-btn"><i class="fas fa-download"></i></button>
+          </div>
+        </article>
+
+        <!-- Картка матеріалу 4 -->
+        <article class="material-card">
+          <div class="card-header">
+            <div class="material-info">
+              <div class="material-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <div class="material-title-container">
+                <h3 class="material-title">SQL для початківців</h3>
+                <p class="material-subtitle">Робота з базами даних</p>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="comments-btn">
+                <i class="fas fa-comment"></i>
+                <span class="comments-count">1</span>
+              </button>
+              <button class="delete-btn"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+
+          <p class="material-description">Основні команди SQL: SELECT, INSERT, UPDATE, DELETE. JOIN та інші операції.</p>
+
+          <div class="file-container">
+            <div class="file-info">
+              <i class="fas fa-file-pdf file-icon"></i>
+              <span class="file-name">sql_basics.pdf</span>
+            </div>
+            <button class="download-btn"><i class="fas fa-download"></i></button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

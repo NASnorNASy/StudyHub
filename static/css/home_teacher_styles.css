@@ -1,4 +1,5 @@
 :root {
+    /* Кольорова палітра */
     --primary-purple: #6b2ff7;
     --primary-purple-light: #a84bff;
     --bg-gradient: linear-gradient(135deg, #f7f9fc 0%, #f0f3ff 100%);
@@ -12,15 +13,18 @@
     --orange: #f0932b;
     --blue: #0984e3;
 
+    /* Тіні */
     --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
     --shadow-strong: 0 14px 24px rgba(0, 0, 0, 0.25);
 
+    /* Закруглення */
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 20px;
     --radius-xl: 26px;
 
+    /* Розміри */
     --sidebar-width: 260px;
 }
 
@@ -38,6 +42,8 @@ body {
     color: var(--black);
 }
 
+
+/* Бокове меню */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -156,7 +162,9 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: var(--radius-md);
-    background: none; border: none; cursor: pointer; font-size: 16px;
+    background: none;
+    border: none;
+    font-size: 16px;
 }
 
 .logout-btn:hover {
@@ -164,6 +172,7 @@ body {
 }
 
 
+/* Основна частина */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -188,162 +197,111 @@ body {
 }
 
 
-
-.tasks-container {
-    padding: 30px 40px;
-}
-
-
-.task-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid #f0f0f0;
-}
-
-.task-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-}
-
-.task-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
-}
-
-.task-status {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.status-success {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-}
-
-.status-pending {
-    background-color: #fff3e0;
-    color: #ef6c00;
-}
-
-.task-title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.task-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 15px;
-    font-size: 20px;
-}
-
-.icon-success {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.icon-pending {
-    background-color: #FFA000;
-    color: white;
-}
-
-.task-details h3 {
-    font-size: 20px;
+.create-course-btn {
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    padding: 12px 24px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.task-course {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.task-description {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.task-deadline {
+    font-size: 16px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    color: #666;
-    font-size: 14px;
+    transition: var(--transition);
 }
 
-.task-deadline i {
+.create-course-btn:hover {
+    background-color: var(--purple-dark);
+}
+
+.create-course-btn i {
     margin-right: 8px;
-    color: #FFA000;
 }
 
-.deadline-date {
-    font-weight: 500;
+/* Сітка курсів */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
-.task-submission {
+/* Картка курсу */
+.course-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
 }
 
-.submission-info {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.course-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--purple);
+    border-radius: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.course-icon i {
+    color: var(--white);
+    font-size: 20px;
+}
+
+.course-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.course-author {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.course-description {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.submission-info i {
-    margin-right: 8px;
-    color: #4CAF50;
+.students-count {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 14px;
 }
 
-.submission-date {
+.students-count i {
+    margin-right: 6px;
+    color: var(--purple);
+}
+
+.badge {
+    background-color: var(--green-bg);
+    color: var(--green-text);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 14px;
     font-weight: 500;
-    color: #2e7d32;
 }
 
-.file-upload {
-    border: 2px dashed #d1c4e9;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f7fd;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.file-upload:hover {
-    background-color: #f3e5f5;
-    border-color: #7b1fa2;
-}
-
-.file-upload i {
-    font-size: 28px;
-    color: #7b1fa2;
-    margin-bottom: 10px;
-}
-
-.file-upload p {
-    color: #7b1fa2;
-    font-weight: 500;
-    font-size: 16px;
-}

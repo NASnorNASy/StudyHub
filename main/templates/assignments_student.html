@@ -22,7 +22,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">Іван Петренко</div>
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
         <div class="user-role">Студент</div>
       </div>
 
@@ -49,10 +49,13 @@
         </a>
       </nav>
 
-      <a href="{% url 'login' %}" class="logout-btn">
-        <i class="fas fa-sign-out-alt"></i>
-        <span>Вийти</span>
-      </a>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
     </aside>
 
     <!-- Основна область контенту -->

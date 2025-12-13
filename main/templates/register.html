@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Зареєструватися в StudyHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/register_styles.css' %}" />
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="register-container">
+      <div class="logo">
+        <i class="fas fa-book-open"></i>
+      </div>
+
+      <div class="title">
+        <h1>StudyHub</h1>
+        <p>Платформа навчальних матеріалів</p>
+      </div>
+
+      <div class="register-form">
+        <form method="post" action="{% url 'register' %}">
+          {% csrf_token %}
+          {% if form %}
+            {% for field in form %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+                {% if field.errors %}
+                  <div class="error-message">{{ field.errors }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="form-group">
+              <label for="id_first_name">Ім'я:</label>
+              <input type="text" name="first_name" id="id_first_name" class="form-input" placeholder="Введіть ваше ім'я" required />
+            </div>
+            <div class="form-group">
+              <label for="id_last_name">Прізвище:</label>
+              <input type="text" name="last_name" id="id_last_name" class="form-input" placeholder="Введіть ваше прізвище" required />
+            </div>
+            <div class="form-group">
+              <label for="id_username">Ім'я користувача:</label>
+              <input type="text" name="username" id="id_username" class="form-input" placeholder="Введіть ім'я користувача" required />
+            </div>
+            <div class="form-group">
+              <label for="id_email">Email:</label>
+              <input type="email" name="email" id="id_email" class="form-input" placeholder="Введіть вашу електронну пошту" required />
+            </div>
+            <div class="form-group">
+              <label for="id_password1">Пароль:</label>
+              <input type="password" name="password1" id="id_password1" class="form-input" placeholder="Введіть пароль" required />
+            </div>
+            <div class="form-group">
+              <label for="id_password2">Підтвердження пароля:</label>
+              <input type="password" name="password2" id="id_password2" class="form-input" placeholder="Підтвердіть пароль" required />
+            </div>
+            <div class="form-group">
+              <label for="id_role">Роль користувача:</label>
+              <select name="role" id="id_role" class="form-input" required>
+                <option value="" disabled selected>Оберіть роль</option>
+                <option value="student">Студент</option>
+                <option value="teacher">Викладач</option>
+                <option value="admin">Адміністратор</option>
+              </select>
+            </div>
+            {% if error_user %}
+              <div class="error-message">{{ error_user }}</div>
+            {% endif %}
+            {% if error_emeil %}
+              <div class="error-message">{{ error_emeil }}</div>
+            {% endif %}
+            {% if error_password %}
+              <div class="error-message">{{ error_password }}</div>
+            {% endif %}
+          {% endif %}
+          <button class="register-button" type="submit">
+            <i class="fas fa-user-plus"></i>
+            Зареєструватися
+          </button>
+        </form>
+      </div>
+      <div class="login-link">
+        <p>
+          Вже маєте обліковий запис? <a href="{% url 'login' %}">Увійти</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -6,7 +6,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Увійти до StudyHub</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -30,46 +29,32 @@
 
       <div class="login-form">
         <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        
-        <!-- IMPORTANT: Add this hidden next field -->
-        {% if next %}
-            <input type="hidden" name="next" value="{{ next }}">
-        {% else %}
-            <input type="hidden" name="next" value="home-student">
-        {% endif %}
-        
-        {% if form.errors %}
-        <div class="error-message">
-            <p>Невірне ім'я користувача або пароль. Спробуйте ще раз.</p>
-        </div>
-        {% endif %}
-        
-        <div class="form-group">
-            <label for="id_username">Ім'я користувача:</label>
-            <input type="text" 
-                   name="username" 
-                   id="id_username" 
-                   class="form-input" 
-                   placeholder="Введіть ім'я користувача" 
-                   required>
-        </div>
-        
-        <div class="form-group">
-            <label for="id_password">Пароль:</label>
-            <input type="password" 
-                   name="password" 
-                   id="id_password" 
-                   class="form-input" 
-                   placeholder="Введіть пароль" 
-                   required>
-        </div>
+          {% csrf_token %}
 
-        <button class="login-button" type="submit">
+          <div class="form-group">
+            <label for="id_username">Ім'я користувача:</label>
+            <input type="text" name="username" id="id_username" class="form-input" placeholder="Введіть ім'я користувача" required />
+          </div>
+
+          <div class="form-group">
+            <label for="id_password">Пароль:</label>
+            <input type="password" name="password" id="id_password" class="form-input" placeholder="Введіть пароль" required />
+          </div>
+
+          {% if form.errors %}
+            <div class="error-message">
+              <p>Невірне ім'я користувача або пароль. Спробуйте ще раз.</p>
+            </div>
+          {% endif %}
+
+          <button class="login-button" type="submit">
             <i class="fas fa-sign-in-alt"></i>
             Увійти
-        </button>
-    </form>
+          </button>
+        </form>
+
+        <div class="register-link">
+          <p>Не маєте облікового запису? <a href="{% url 'register' %}">Зареєструватися</a></p>
       </div>
     </div>
   </body>

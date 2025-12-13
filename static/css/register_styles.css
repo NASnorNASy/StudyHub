@@ -48,7 +48,7 @@ body {
     right: 10%;
 }
 
-.login-container {
+.register-container {
     width: 100%;
     max-width: 460px;
     background: rgba(255, 255, 255, 0.95);
@@ -96,7 +96,7 @@ body {
     line-height: 1.5;
 }
 
-.login-form {
+.register-form {
     margin-top: 36px;
 }
 
@@ -125,7 +125,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.login-button {
+.register-button {
     width: 100%;
     height: 52px;
     background: linear-gradient(135deg, #7b2ff7 0%, #c74bff 100%);
@@ -143,12 +143,12 @@ body {
     gap: 10px;
 }
 
-.login-button:hover {
+.register-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 25px rgba(123, 47, 247, 0.25);
 }
 
-.login-button:active {
+.register-button:active {
     transform: translateY(0);
     box-shadow: 0 4px 12px rgba(123, 47, 247, 0.2);
 }
@@ -161,7 +161,7 @@ body {
     text-align: center;
 }
 
-.register-link {
+.login-link {
     text-align: center;
     margin-top: 16px;
     font-size: 14px;

@@ -1,1 +1,149 @@
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyHub - Управління курсами</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/home_admin_styles.css' %}" />
+  </head>
+  <body>
+    <!-- Ліва панель навігації -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-role">Адміністратор</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-admin' %}" class="nav-item active">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'users-admin' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Користувачі</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Управління курсами</h1>
+
+        <div class="header-controls">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Пошук курсів..." />
+          </div>
+
+          <button class="create-course-btn">
+            <i class="fas fa-plus"></i>
+            <span>Створити курс</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Таблиця курсів -->
+      <section class="courses-table">
+        <!-- Заголовки таблиці -->
+        <div class="table-header">
+          <div>Назва курсу</div>
+          <div>Викладач</div>
+          <div>Студентів</div>
+          <div>Дії</div>
+        </div>
+
+        <!-- Рядок курсу 1 -->
+        <div class="table-row">
+          <div class="course-info">
+            <div class="course-title">Алгоритми та структури даних</div>
+            <div class="course-description">Глибоке вивчення алгоритмів, складності та структур даних для ефективного розв'язання задач програмування.</div>
+          </div>
+          <div class="teacher">Олена Коваленко</div>
+          <div class="students">145</div>
+          <div class="actions">
+            <button class="action-btn edit-btn" title="Редагувати курс"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" title="Видалити курс"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+
+        <!-- Рядок курсу 2 -->
+        <div class="table-row">
+          <div class="course-info">
+            <div class="course-title">Бази даних та SQL</div>
+            <div class="course-description">Проектування баз даних, мова SQL та оптимізація запитів для ефективної роботи з даними.</div>
+          </div>
+          <div class="teacher">Максим Петренко</div>
+          <div class="students">203</div>
+          <div class="actions">
+            <button class="action-btn edit-btn" title="Редагувати курс"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" title="Видалити курс"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+
+        <!-- Рядок курсу 3 -->
+        <div class="table-row">
+          <div class="course-info">
+            <div class="course-title">Веб-розробка з React</div>
+            <div class="course-description">Створення сучасних веб-додатків з використанням бібліотеки React, хуків та екосистеми.</div>
+          </div>
+          <div class="teacher">Ірина Мельник</div>
+          <div class="students">178</div>
+          <div class="actions">
+            <button class="action-btn edit-btn" title="Редагувати курс"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" title="Видалити курс"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+
+        <!-- Рядок курсу 4 -->
+        <div class="table-row">
+          <div class="course-info">
+            <div class="course-title">Основи програмування на Python</div>
+            <div class="course-description">Введення в програмування, синтаксис Python та основні концепції для початківців.</div>
+          </div>
+          <div class="teacher">Володимир Шевченко</div>
+          <div class="students">312</div>
+          <div class="actions">
+            <button class="action-btn edit-btn" title="Редагувати курс"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" title="Видалити курс"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+
+        <!-- Рядок курсу 5 -->
+        <div class="table-row">
+          <div class="course-info">
+            <div class="course-title">Machine Learning основи</div>
+            <div class="course-description">Вступ до машинного навчання, алгоритми навчання та практичне застосування для аналізу даних.</div>
+          </div>
+          <div class="teacher">Анна Бойко</div>
+          <div class="students">89</div>
+          <div class="actions">
+            <button class="action-btn edit-btn" title="Редагувати курс"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" title="Видалити курс"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

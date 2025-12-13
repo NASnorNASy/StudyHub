@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyHub - Управління користувачами</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/users_admin_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-role">Адміністратор</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-admin' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'users-admin' %}" class="nav-item active">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Користувачі</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Управління користувачами</h1>
+      </div>
+
+      <div class="users-table-container">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Ім'я</th>
+              <th>Email</th>
+              <th>Роль</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="user-name-cell">Іван Петренко</td>
+              <td>student@studyhub.com</td>
+              <td>
+                <span class="role-tag role-student">Студент</span>
+              </td>
+              <td class="actions-cell">
+                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
+                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td class="user-name-cell">Олена Коваленко</td>
+              <td>teacher@studyhub.com</td>
+              <td>
+                <span class="role-tag role-teacher">Викладач</span>
+              </td>
+              <td class="actions-cell">
+                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
+                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td class="user-name-cell">
+                Адмін Системи
+                <span class="current-user">Ви</span>
+              </td>
+              <td>admin@studyhub.com</td>
+              <td>
+                <span class="role-tag role-admin">Адміністратор</span>
+              </td>
+              <td class="actions-cell">
+                <!-- No action buttons for current user -->
+              </td>
+            </tr>
+            <tr>
+              <td class="user-name-cell">Марія Шевченко</td>
+              <td>maria@studyhub.com</td>
+              <td>
+                <span class="role-tag role-student">Студент</span>
+              </td>
+              <td class="actions-cell">
+                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
+                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td class="user-name-cell">Петро Іванов</td>
+              <td>petro@studyhub.com</td>
+              <td>
+                <span class="role-tag role-student">Студент</span>
+              </td>
+              <td class="actions-cell">
+                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
+                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

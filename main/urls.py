@@ -3,11 +3,17 @@ from . import views
 
 
 urlpatterns = [
-    path("login/", views.custom_login_view, name="login"),
+    path("login/", views.login_view, name="login"),
+    path("register/", views.register_view, name="register"),
     path("home-student/", views.home_student, name="home-student"),
     path("all-courses-student/", views.all_courses_student, name="all-courses-student"),
     path("materials-student/", views.materials_student, name="materials-student"),
     path("assignments-student/", views.assignments_student, name="assignments-student"),
     path("my-works-student/", views.my_works_student, name="my-works-student"),
-     path("home-teacher/", views.home_teacher, name="home-teacher"),
+    path("home-teacher/", views.home_teacher, name="home-teacher"),
+    path("materials-teacher/", views.materials_teacher, name="materials-teacher"),
+    path("assignments-teacher/", views.assignments_teacher, name="assignments-teacher"),
+    path("students-works-teacher/", views.students_works_teacher, name="students-works-teacher"),
+    path("home-admin/", views.home_admin, name="home-admin"),
+    path("users-admin/", views.users_admin, name="users-admin"),
 ]

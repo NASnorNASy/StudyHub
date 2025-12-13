@@ -1,4 +1,5 @@
 :root {
+    /* Кольорова палітра */
     --primary-purple: #6b2ff7;
     --primary-purple-light: #a84bff;
     --bg-gradient: linear-gradient(135deg, #f7f9fc 0%, #f0f3ff 100%);
@@ -12,15 +13,18 @@
     --orange: #f0932b;
     --blue: #0984e3;
 
+    /* Тіні */
     --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
     --shadow-strong: 0 14px 24px rgba(0, 0, 0, 0.25);
 
+    /* Закруглення */
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 20px;
     --radius-xl: 26px;
 
+    /* Розміри */
     --sidebar-width: 260px;
 }
 
@@ -38,6 +42,7 @@ body {
     color: var(--black);
 }
 
+/* ===== Ліва панель ===== */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -156,14 +161,16 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: var(--radius-md);
-    background: none; border: none; cursor: pointer; font-size: 16px;
+    background: none;
+    border: none;
+    font-size: 16px;
 }
 
 .logout-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
+/* Основна область контенту */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -172,6 +179,7 @@ body {
 }
 
 
+/* Header */
 .page-title {
     font-size: 26px;
     font-weight: 600;
@@ -188,162 +196,135 @@ body {
 }
 
 
-
-.tasks-container {
-    padding: 30px 40px;
-}
-
-
-.task-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid #f0f0f0;
-}
-
-.task-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-}
-
-.task-header {
+.header-controls {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
+    align-items: center;
+    gap: 16px;
 }
 
-.task-status {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding: 10px 16px 10px 40px;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    width: 250px;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+.create-course-btn {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
-}
-
-.status-success {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-}
-
-.status-pending {
-    background-color: #fff3e0;
-    color: #ef6c00;
-}
-
-.task-title {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    gap: 8px;
+    transition: background-color 0.2s;
 }
 
-.task-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 15px;
-    font-size: 20px;
+.create-course-btn:hover {
+    background-color: var(--primary-light);
 }
 
-.icon-success {
-    background-color: #4CAF50;
-    color: white;
+/* Таблиця курсів */
+.courses-table {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
 }
 
-.icon-pending {
-    background-color: #FFA000;
-    color: white;
-}
-
-.task-details h3 {
-    font-size: 20px;
+.table-header {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 0.5fr;
+    padding: 16px 24px;
+    background-color: #F5F5F5;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
+    color: var(--text-medium);
+    border-bottom: 1px solid var(--border);
 }
 
-.task-course {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+.table-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 0.5fr;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
 }
 
-.task-description {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 20px;
+.table-row:last-child {
+    border-bottom: none;
 }
 
-.task-deadline {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    color: #666;
-    font-size: 14px;
+.table-row:hover {
+    background-color: #F9F9F9;
 }
 
-.task-deadline i {
-    margin-right: 8px;
-    color: #FFA000;
-}
-
-.deadline-date {
-    font-weight: 500;
-}
-
-.task-submission {
+.course-info {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
-.submission-info {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+.course-title {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.course-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.teacher,
+.students {
     display: flex;
     align-items: center;
+    color: var(--text-medium);
 }
 
-.submission-info i {
-    margin-right: 8px;
-    color: #4CAF50;
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.submission-date {
-    font-weight: 500;
-    color: #2e7d32;
-}
-
-.file-upload {
-    border: 2px dashed #d1c4e9;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f7fd;
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
     cursor: pointer;
-    transition: all 0.3s;
+    font-size: 18px;
+    transition: color 0.2s;
 }
 
-.file-upload:hover {
-    background-color: #f3e5f5;
-    border-color: #7b1fa2;
+.edit-btn:hover {
+    color: var(--primary-light);
 }
 
-.file-upload i {
-    font-size: 28px;
-    color: #7b1fa2;
-    margin-bottom: 10px;
-}
-
-.file-upload p {
-    color: #7b1fa2;
-    font-weight: 500;
-    font-size: 16px;
+.delete-btn:hover {
+    color: var(--danger);
 }
