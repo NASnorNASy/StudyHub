@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StudyHub - Мої курси</title>
+    <title>Мої курси</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{% static 'css/home_teacher_styles.css' %}" />
   </head>
   <body>
-    <!-- Бокове меню -->
     <aside class="sidebar">
       <div class="logo">
         <div class="logo-icon">
@@ -55,7 +54,6 @@
       </form>
     </aside>
 
-    <!-- Основний контент -->
     <main class="main-content">
       <div class="main-header">
         <h1 class="page-title">Мої курси</h1>
@@ -66,7 +64,6 @@
       </div>
 
       <div class="courses-grid">
-        <!-- Картка курсу 1 -->
         <div class="course-card">
           <div class="course-icon">
             <i class="fas fa-code"></i>
@@ -83,7 +80,6 @@
           </div>
         </div>
 
-        <!-- Картка курсу 2 -->
         <div class="course-card">
           <div class="course-icon">
             <i class="fas fa-paint-brush"></i>
@@ -100,7 +96,6 @@
           </div>
         </div>
 
-        <!-- Картка курсу 3 -->
         <div class="course-card">
           <div class="course-icon">
             <i class="fas fa-database"></i>
@@ -116,100 +111,7 @@
             <div class="badge">✓ Ви зареєстровані</div>
           </div>
         </div>
-
-        <!-- Картка курсу 4 -->
-        <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <h3 class="course-title">Розробка додатків для iOS</h3>
-          <div class="course-author">Олена Коваленко</div>
-          <p class="course-description">Створення нативних додатків для iPhone та iPad з використанням Swift та SwiftUI. Від основ до публікації в App Store.</p>
-          <div class="course-footer">
-            <div class="students-count">
-              <i class="fas fa-users"></i>
-              <span>12 студентів</span>
-            </div>
-            <div class="badge">✓ Ви зареєстровані</div>
-          </div>
-        </div>
-
-        <!-- Картка курсу 5 -->
-        <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="course-title">Аналітика даних</h3>
-          <div class="course-author">Олена Коваленко</div>
-          <p class="course-description">Навчіться аналізувати дані, будувати звіти та візуалізації за допомогою Python, Pandas та Tableau. Прийняття рішень на основі даних.</p>
-          <div class="course-footer">
-            <div class="students-count">
-              <i class="fas fa-users"></i>
-              <span>20 студентів</span>
-            </div>
-            <div class="badge">✓ Ви зареєстровані</div>
-          </div>
-        </div>
-
-        <!-- Картка курсу 6 -->
-        <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="course-title">Кібербезпека</h3>
-          <div class="course-author">Олена Коваленко</div>
-          <p class="course-description">Основи інформаційної безпеки, методи захисту мереж та систем, етичний хакінг та аналіз вразливостей.</p>
-          <div class="course-footer">
-            <div class="students-count">
-              <i class="fas fa-users"></i>
-              <span>8 студентів</span>
-            </div>
-            <div class="badge">✓ Ви зареєстровані</div>
-          </div>
-        </div>
       </div>
     </main>
-
-    <script>
-      // Мобільне меню
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle')
-      const sidebar = document.getElementById('sidebar')
-      const logoutBtn = document.getElementById('logoutBtn')
-      
-      mobileMenuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active')
-      })
-      
-      // Закриття меню при кліку на пункт меню (для мобільної версії)
-      const navItems = document.querySelectorAll('.nav-item')
-      navItems.forEach((item) => {
-        item.addEventListener('click', () => {
-          if (window.innerWidth <= 768) {
-            sidebar.classList.remove('active')
-          }
-        })
-      })
-      
-      // Обробка кнопки виходу
-      logoutBtn.addEventListener('click', () => {
-        alert('Функціонал виходу з системи буде реалізовано в майбутньому')
-      })
-      
-      // Обробка кнопки створення курсу
-      const createCourseBtn = document.querySelector('.create-course-btn')
-      createCourseBtn.addEventListener('click', () => {
-        alert('Функціонал створення курсу буде реалізовано в майбутньому')
-      })
-      
-      // Закриття меню при кліку поза ним (для мобільної версії)
-      document.addEventListener('click', (event) => {
-        const isClickInsideSidebar = sidebar.contains(event.target)
-        const isClickOnToggle = mobileMenuToggle.contains(event.target)
-      
-        if (!isClickInsideSidebar && !isClickOnToggle && window.innerWidth <= 768) {
-          sidebar.classList.remove('active')
-        }
-      })
-    </script>
   </body>
 </html>

@@ -1,5 +1,4 @@
 :root {
-    /* Кольорова палітра */
     --primary-purple: #6b2ff7;
     --primary-purple-light: #a84bff;
     --bg-gradient: linear-gradient(135deg, #f7f9fc 0%, #f0f3ff 100%);
@@ -13,18 +12,15 @@
     --orange: #f0932b;
     --blue: #0984e3;
 
-    /* Тіні */
     --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
     --shadow-strong: 0 14px 24px rgba(0, 0, 0, 0.25);
 
-    /* Закруглення */
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 20px;
     --radius-xl: 26px;
 
-    /* Розміри */
     --sidebar-width: 260px;
 }
 
@@ -42,8 +38,6 @@ body {
     color: var(--black);
 }
 
-
-/* Бокове меню */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -88,19 +82,6 @@ body {
     border-radius: var(--radius-md);
     padding: 16px;
     margin-bottom: 32px;
-}
-
-.user-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: white;
-    margin-bottom: 12px;
 }
 
 .user-name {
@@ -171,15 +152,12 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
-/* Основна частина */
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
     padding: 48px;
     max-width: 1200px;
 }
-
 
 .page-title {
     font-size: 26px;
@@ -195,7 +173,6 @@ body {
     margin-bottom: 30px;
     border-bottom: 2px solid #e1e1e1;
 }
-
 
 .create-course-btn {
     background-color: var(--purple);
@@ -219,14 +196,12 @@ body {
     margin-right: 8px;
 }
 
-/* Сітка курсів */
 .courses-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-/* Картка курсу */
 .course-card {
     background-color: var(--white);
     border-radius: 20px;
@@ -304,4 +279,3 @@ body {
     font-size: 14px;
     font-weight: 500;
 }
-

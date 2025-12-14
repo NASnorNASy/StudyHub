@@ -90,7 +90,6 @@ def register_view(request):
     )
 
 
-# ---------------------------------------------------------Student
 def is_student(user):
     return user.groups.filter(name="Студент").exists()
 
@@ -125,7 +124,6 @@ def my_works_student(request):
     return render(request, "my_works_student.html")
 
 
-# ---------------------------------------------------------Teacher
 def is_teacher(user):
     return user.groups.filter(name="Викладач").exists()
 
@@ -154,7 +152,6 @@ def students_works_teacher(request):
     return render(request, "students_works_teacher.html")
 
 
-# ---------------------------------------------------------Admin
 def is_admin(user):
     return user.groups.filter(name="Адмін").exists()
 

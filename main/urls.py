@@ -13,7 +13,11 @@ urlpatterns = [
     path("home-teacher/", views.home_teacher, name="home-teacher"),
     path("materials-teacher/", views.materials_teacher, name="materials-teacher"),
     path("assignments-teacher/", views.assignments_teacher, name="assignments-teacher"),
-    path("students-works-teacher/", views.students_works_teacher, name="students-works-teacher"),
+    path(
+        "students-works-teacher/",
+        views.students_works_teacher,
+        name="students-works-teacher",
+    ),
     path("home-admin/", views.home_admin, name="home-admin"),
     path("users-admin/", views.users_admin, name="users-admin"),
 ]
