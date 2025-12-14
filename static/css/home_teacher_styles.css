@@ -217,22 +217,6 @@ body {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
-.course-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--purple);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.course-icon i {
-    color: var(--white);
-    font-size: 20px;
-}
-
 .course-title {
     font-size: 18px;
     font-weight: 700;

@@ -260,18 +260,6 @@ body {
     gap: 16px;
 }
 
-.material-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #6C4DFF, #8A3FFC);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: var(--text-white);
-}
-
 .material-title-container {
     display: flex;
     flex-direction: column;

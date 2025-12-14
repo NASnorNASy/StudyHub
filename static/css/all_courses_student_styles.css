@@ -202,18 +202,6 @@ body {
     margin-bottom: 20px;
 }
 
-.course-icon {
-    width: 60px;
-    height: 60px;
-    background-color: #f0e8ff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 18px;
-    flex-shrink: 0;
-}
-
 .course-title {
     font-size: 22px;
     font-weight: 600;

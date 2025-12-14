@@ -1,17 +1,20 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Course(models.Model):
     title = models.CharField(max_length=200, verbose_name="Назва курсу")
     description = models.TextField(verbose_name="Опис курсу")
-    teacher = models.CharField(max_length=150, verbose_name="Ім'я викладача")
+    teacher = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"groups__name": "Викладач"},
+        verbose_name="Викладач",
+    )
 
     def __str__(self):
         return self.title
-
-    # def get_absolute_url(self):
-    #     return reverse("more-book", args=[str(self.id)])
 
     class Meta:
         verbose_name = "Курс"
@@ -26,7 +29,7 @@ class Material(models.Model):
         verbose_name="Course",
     )
     title = models.CharField(max_length=200, verbose_name="Назва матеріалу")
-    file = models.FileField(upload_to="materials/", verbose_name="Файл матеріалу")
+    file = models.FileField(upload_to="static/materials/", verbose_name="Файл матеріалу")
     description = models.TextField(blank=True, verbose_name="Опис матеріалу")
 
     def __str__(self):
@@ -63,8 +66,13 @@ class Submission(models.Model):
         related_name="submissions",
         verbose_name="Assignment",
     )
-    student = models.CharField(max_length=150, verbose_name="Ім'я студента")
-    file = models.FileField(upload_to="submissions/", verbose_name="Файл здачі")
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"groups__name": "Студент"},
+        verbose_name="Студент",
+    )
+    file = models.FileField(upload_to="static/submissions/", verbose_name="Файл здачі")
     grade = models.DecimalField(
         max_digits=5, decimal_places=2, null=True, blank=True, verbose_name="Оцінка"
     )

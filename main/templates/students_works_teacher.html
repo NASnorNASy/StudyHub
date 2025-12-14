@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Роботи студентів</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Викладач</div>
       </div>
 
@@ -61,10 +62,6 @@
 
       <section class="works-list">
         <div class="work-card">
-          <div class="work-icon">
-            <i class="fas fa-file-code"></i>
-          </div>
-
           <div class="work-details">
             <h3 class="work-title">Лабораторна робота №1</h3>
             <p class="work-course">Основи програмування на Python</p>
@@ -100,10 +97,6 @@
         </div>
 
         <div class="work-card">
-          <div class="work-icon">
-            <i class="fas fa-laptop-code"></i>
-          </div>
-
           <div class="work-details">
             <h3 class="work-title">Проєкт: Todo App</h3>
             <p class="work-course">Веб-розробка з React</p>
@@ -139,10 +132,6 @@
         </div>
 
         <div class="work-card">
-          <div class="work-icon">
-            <i class="fas fa-file-code"></i>
-          </div>
-
           <div class="work-details">
             <h3 class="work-title">Лабораторна робота №2</h3>
             <p class="work-course">Основи програмування на Python</p>
@@ -178,10 +167,6 @@
         </div>
 
         <div class="work-card">
-          <div class="work-icon">
-            <i class="fas fa-database"></i>
-          </div>
-
           <div class="work-details">
             <h3 class="work-title">База даних студентів</h3>
             <p class="work-course">Бази даних SQL</p>

@@ -195,20 +195,6 @@ body {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.work-icon {
-    width: 56px;
-    height: 56px;
-    background-color: var(--primary-light);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    font-size: 24px;
-    margin-right: 20px;
-    flex-shrink: 0;
-}
-
 .work-details {
     flex-grow: 1;
 }
@@ -283,7 +269,7 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: black;
     color: var(--white);
 }
 
@@ -292,7 +278,7 @@ body {
 }
 
 .btn-secondary {
-    background-color: var(--secondary-color);
+    background-color: black;
     color: var(--white);
 }
 

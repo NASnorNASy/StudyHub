@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Мої завдання</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Студент</div>
       </div>
 
@@ -73,9 +74,6 @@
           </div>
 
           <div class="task-title">
-            <div class="task-icon icon-success">
-              <i class="fas fa-check"></i>
-            </div>
             <div class="task-details">
               <h3>calculator.py</h3>
               <p class="task-course">Програмування на Python</p>
@@ -101,9 +99,6 @@
           </div>
 
           <div class="task-title">
-            <div class="task-icon icon-pending">
-              <i class="fas fa-code"></i>
-            </div>
             <div class="task-details">
               <h3>Проєкт. Todo App</h3>
               <p class="task-course">Веб-розробка з React</p>
@@ -134,9 +129,6 @@
           </div>
 
           <div class="task-title">
-            <div class="task-icon icon-pending">
-              <i class="fas fa-cubes"></i>
-            </div>
             <div class="task-details">
               <h3>Компонентна архітектура</h3>
               <p class="task-course">Веб-розробка з React</p>

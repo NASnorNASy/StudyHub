@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Мої курси</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Студент</div>
       </div>
 
@@ -65,9 +66,6 @@
 
       <div class="courses-container">
         <div class="course-card">
-          <div class="course-icon">
-            <i class="fab fa-python"></i>
-          </div>
           <div class="course-info">
             <h2 class="course-title">Основи програмування на Python</h2>
             <div class="course-teacher">
@@ -83,9 +81,6 @@
         </div>
 
         <div class="course-card">
-          <div class="course-icon">
-            <i class="fab fa-react"></i>
-          </div>
           <div class="course-info">
             <h2 class="course-title">Веб-розробка з React</h2>
             <div class="course-teacher">

@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Мої курси</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Викладач</div>
       </div>
 
@@ -59,15 +60,12 @@
         <h1 class="page-title">Мої курси</h1>
         <button class="create-course-btn">
           <i class="fas fa-plus"></i>
-          <span>+ Створити курс</span>
+          <span>Створити курс</span>
         </button>
       </div>
 
       <div class="courses-grid">
         <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-code"></i>
-          </div>
           <h3 class="course-title">Основи веб-розробки</h3>
           <div class="course-author">Олена Коваленко</div>
           <p class="course-description">Навчіться створювати сучасні веб-сайти з нуля, використовуючи HTML, CSS та JavaScript. Курс включає практичні завдання та фінальний проект.</p>
@@ -81,9 +79,6 @@
         </div>
 
         <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-paint-brush"></i>
-          </div>
           <h3 class="course-title">UI/UX дизайн</h3>
           <div class="course-author">Олена Коваленко</div>
           <p class="course-description">Основи проектування користувацьких інтерфейсів та досвіду взаємодії. Вивчення Figma, створення прототипів та проведення юзабіліті-тестування.</p>
@@ -97,9 +92,6 @@
         </div>
 
         <div class="course-card">
-          <div class="course-icon">
-            <i class="fas fa-database"></i>
-          </div>
           <h3 class="course-title">Бази даних SQL</h3>
           <div class="course-author">Олена Коваленко</div>
           <p class="course-description">Повний курс по роботі з реляційними базами даних: проектування схем, написання запитів, оптимізація та адміністрування БД.</p>

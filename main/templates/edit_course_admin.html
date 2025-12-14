@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Редагувати курс</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/edit_course_admin_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="user-role">Адміністратор</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-admin' %}" class="nav-item active">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'users-admin' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Користувачі</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Редагувати курс</h1>
+      </div>
+
+      <div class="edit-course-container">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_title">Назва курсу:</label>
+            <input
+              type="text"
+              id="id_title"
+              name="title"
+              class="title-input"
+              value="{{ course.title }}"
+              required
+            />
+            </div>
+            <div class="form-group">
+              <label for="id_description">Опис курсу:</label>
+              <textarea
+                id="id_description"
+                name="description"
+                class="description-input"
+              >{{ course.description }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="id_teacher">Викладач:</label>
+              <select id="id_teacher" name="teacher" class="teacher-select" required>
+                {% for teacher in teachers %}
+                  <option value="{{ teacher.id }}" {% if course.teacher.id == teacher.id %}selected{% endif %}>
+                    {{ teacher.first_name }} {{ teacher.last_name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="actions-buttons">
+              <button type="submit" class="submit-btn">Зберегти зміни</button>
+              <a href="{% url 'home-admin' %}" class="cancel-btn">Скасувати</a>
+            </div>
+        </form>
+        </div>
+    </main>
+    </body>
+</html>

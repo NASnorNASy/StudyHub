@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Управління користувачами</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Адміністратор</div>
       </div>
 
@@ -62,61 +63,29 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="user-name-cell">Іван Петренко</td>
-              <td>student@studyhub.com</td>
-              <td>
-                <span class="role-tag role-student">Студент</span>
-              </td>
-              <td class="actions-cell">
-                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
-                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td class="user-name-cell">Олена Коваленко</td>
-              <td>teacher@studyhub.com</td>
-              <td>
-                <span class="role-tag role-teacher">Викладач</span>
-              </td>
-              <td class="actions-cell">
-                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
-                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td class="user-name-cell">
-                Адмін Системи
-                <span class="current-user">Ви</span>
-              </td>
-              <td>admin@studyhub.com</td>
-              <td>
-                <span class="role-tag role-admin">Адміністратор</span>
-              </td>
-              <td class="actions-cell"></td>
-            </tr>
-            <tr>
-              <td class="user-name-cell">Марія Шевченко</td>
-              <td>maria@studyhub.com</td>
-              <td>
-                <span class="role-tag role-student">Студент</span>
-              </td>
-              <td class="actions-cell">
-                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
-                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td class="user-name-cell">Петро Іванов</td>
-              <td>petro@studyhub.com</td>
-              <td>
-                <span class="role-tag role-student">Студент</span>
-              </td>
-              <td class="actions-cell">
-                <button class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt"></i></button>
-                <button class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
+            {% for user in users %}
+              <tr>
+                <td class="user-name-cell">{{ user.first_name }} {{ user.last_name }}</td>
+                <td class="user-email-cell">{{ user.email }}</td>
+                <td>
+                  <span class="role-tag role-{{ user.groups.all.0.name }}">{{ user.groups.all.0.name }}</span>
+                </td>
+                {% if user.groups.all.0.name != 'Адмін' and not user.is_superuser %}
+                  <td class="actions-cell">
+                    {% if user.is_authenticated and perms.auth.change_user %}
+                      <a href="{% url 'edit-user-role-admin' user.id %}" class="action-btn edit-btn" title="Редагувати"><i class="fas fa-pencil-alt action-btn-edit"></i></a>
+                    {% endif %}
+                    {% if user.is_authenticated and perms.auth.delete_user %}
+                      <a href="{% url 'delete-user-admin' user.id %}" class="action-btn delete-btn" title="Видалити"><i class="fas fa-trash action-btn-delete"></i></a>
+                    {% endif %}
+                  </td>
+                {% else %}
+                  <td class="actions-cell">
+                    <p>-</p>
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

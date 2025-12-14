@@ -174,111 +174,46 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-
-.header-controls {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+.delete-user-container {
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.create-course-btn {
-    background-color: var(--primary-purple);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: 10px 20px;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s;
-    text-decoration: none;
-}
-
-.create-course-btn:hover {
-    background-color: var(--primary-purple-light);
-}
-
-.courses-table {
-    width: 100%;
-    background-color: var(--white);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 2px 10px var(--shadow);
-}
-
-.table-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 0.5fr;
-    padding: 16px 24px;
-    background-color: var(--white);
-    font-weight: 600;
-    color: var(--text-medium);
-    border-bottom: 1px solid rgb(223, 223, 223);
-}
-
-.table-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 0.5fr;
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    transition: background-color 0.2s;
-    border-bottom: 1px solid rgb(206, 206, 206);
-}
-
-.table-row:last-child {
-    border-bottom: none;
-}
-
-.course-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.course-title {
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.course-description {
-    font-size: var(--font-size-sm);
-    color: var(--text-light);
-    line-height: 1.4;
-}
-
-.teacher,
-.students {
-    display: flex;
-    align-items: center;
-    color: var(--text-medium);
-}
-
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.action-btn {
-    background: none;
-    border: none;
-    color: var(--text-light);
-    cursor: pointer;
+.delete-user-message {
     font-size: 18px;
-    transition: color 0.2s;
+    margin-bottom: 24px;
+    color: var(--black);
 }
 
-.view-btn {
-    color: var(--green);
+.delete-user-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
 }
 
-.edit-btn {
-    color: var(--blue);
+.confirm-delete-btn {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.delete-btn {
-    color: rgb(225, 0, 0);
+.cancel-delete-btn {
+    background-color: var(--gray-light);
+    color: var(--black);
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
 }

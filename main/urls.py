@@ -19,5 +19,31 @@ urlpatterns = [
         name="students-works-teacher",
     ),
     path("home-admin/", views.home_admin, name="home-admin"),
+    path("create-course-admin/", views.create_course_admin, name="create-course-admin"),
+    path(
+        "view-course-admin/<int:course_id>/",
+        views.view_course_admin,
+        name="view-course-admin",
+    ),
+    path(
+        "edit-course-admin/<int:course_id>/",
+        views.edit_course_admin,
+        name="edit-course-admin",
+    ),
+    path(
+        "delete-course-admin/<int:course_id>/",
+        views.delete_course_admin,
+        name="delete-course-admin",
+    ),
     path("users-admin/", views.users_admin, name="users-admin"),
+    path(
+        "edit-user-role-admin/<str:user_id>/",
+        views.edit_user_role_admin,
+        name="edit-user-role-admin",
+    ),
+    path(
+        "delete-user-admin/<str:user_id>/",
+        views.delete_user_admin,
+        name="delete-user-admin",
+    ),
 ]

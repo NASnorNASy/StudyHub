@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Видалити користувача</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/delete_user_admin_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="user-role">Адміністратор</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-admin' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'users-admin' %}" class="nav-item active">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Користувачі</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Видалити користувача</h1>
+      </div>
+      <div class="delete-user-container">
+        <p class="delete-user-message">
+          Ви впевнені, що хочете видалити користувача
+          <strong>{{ user.first_name }} {{ user.last_name }}</strong>? Цю дію не можна буде скасувати.
+        </p>
+        <form method="post" action="{% url 'delete-user-admin' user.id %}">
+          {% csrf_token %}
+          <div class="delete-user-buttons">
+            <button type="submit" class="confirm-delete-btn">Видалити</button>
+            <a href="{% url 'users-admin' %}" class="cancel-delete-btn">Скасувати</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

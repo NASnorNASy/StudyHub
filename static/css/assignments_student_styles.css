@@ -178,6 +178,9 @@ body {
 
 .tasks-container {
     padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .task-card {
@@ -224,27 +227,6 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-}
-
-.task-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 15px;
-    font-size: 20px;
-}
-
-.icon-success {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.icon-pending {
-    background-color: #FFA000;
-    color: white;
 }
 
 .task-details h3 {

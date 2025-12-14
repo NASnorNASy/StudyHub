@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Матеріали</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +23,7 @@
       </div>
 
       <div class="user-card">
-        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
         <div class="user-role">Викладач</div>
       </div>
 
@@ -73,9 +74,6 @@
         <article class="material-card">
           <div class="card-header">
             <div class="material-info">
-              <div class="material-icon">
-                <i class="fas fa-file-alt"></i>
-              </div>
               <div class="material-title-container">
                 <h3 class="material-title">Вступ до Python</h3>
                 <p class="material-subtitle">Основи програмування на Python</p>
@@ -104,9 +102,6 @@
         <article class="material-card">
           <div class="card-header">
             <div class="material-info">
-              <div class="material-icon">
-                <i class="fas fa-file-code"></i>
-              </div>
               <div class="material-title-container">
                 <h3 class="material-title">Цикли та умови</h3>
                 <p class="material-subtitle">Управління потоком виконання</p>
@@ -135,9 +130,6 @@
         <article class="material-card">
           <div class="card-header">
             <div class="material-info">
-              <div class="material-icon">
-                <i class="fas fa-laptop-code"></i>
-              </div>
               <div class="material-title-container">
                 <h3 class="material-title">Основи React</h3>
                 <p class="material-subtitle">Сучасний фронтенд-фреймворк</p>
@@ -158,37 +150,6 @@
             <div class="file-info">
               <i class="fas fa-file-pdf file-icon"></i>
               <span class="file-name">react_basics.pdf</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i></button>
-          </div>
-        </article>
-
-        <article class="material-card">
-          <div class="card-header">
-            <div class="material-info">
-              <div class="material-icon">
-                <i class="fas fa-database"></i>
-              </div>
-              <div class="material-title-container">
-                <h3 class="material-title">SQL для початківців</h3>
-                <p class="material-subtitle">Робота з базами даних</p>
-              </div>
-            </div>
-            <div class="card-actions">
-              <button class="comments-btn">
-                <i class="fas fa-comment"></i>
-                <span class="comments-count">1</span>
-              </button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
-
-          <p class="material-description">Основні команди SQL: SELECT, INSERT, UPDATE, DELETE. JOIN та інші операції.</p>
-
-          <div class="file-container">
-            <div class="file-info">
-              <i class="fas fa-file-pdf file-icon"></i>
-              <span class="file-name">sql_basics.pdf</span>
             </div>
             <button class="download-btn"><i class="fas fa-download"></i></button>
           </div>
