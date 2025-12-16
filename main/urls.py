@@ -8,6 +8,7 @@ urlpatterns = [
     path("home-student/", views.home_student, name="home-student"),
     path("all-courses-student/", views.all_courses_student, name="all-courses-student"),
     path("materials-student/", views.materials_student, name="materials-student"),
+    path("comments-student/<int:material_id>/", views.comments_student, name="comments-student"),
     path("assignments-student/", views.assignments_student, name="assignments-student"),
     path(
         "assignments-student-view/<int:assignment_id>/",
@@ -27,7 +28,13 @@ urlpatterns = [
         views.create_materials_teacher,
         name="create-materials-teacher",
     ),
+    path("comments-teacher/<int:material_id>/", views.comments_teacher, name="comments-teacher"),
     path("assignments-teacher/", views.assignments_teacher, name="assignments-teacher"),
+    path(
+        "create-assignments-teacher/",
+        views.create_assignments_teacher,
+        name="create-assignments-teacher",
+    ),
     path(
         "students-works-teacher/",
         views.students_works_teacher,

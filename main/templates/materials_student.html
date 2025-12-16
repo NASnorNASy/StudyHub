@@ -62,14 +62,16 @@
     <main class="main-content">
       <div class="main-header">
         <h1 class="page-title">Навчальні матеріали</h1>
-        <div class="search-container">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Пошук матеріалів..." />
-        </div>
+        <form method="GET">
+          <div class="search-container">
+            <button type="submit" class="search-icon"><i class="fas fa-search"></i></button>
+            <input type="text" class="search-input" name="search" placeholder="Пошук матеріалів..." value="{{ request.GET.search|default_if_none:'' }}" />
+          </div>
+        </form>
       </div>
 
-      {% for material in materials_student %}
-        <div class="materials-list">
+      <div class="materials-list">
+        {% for material in materials_student %}
           <div class="material-card">
             <div class="card-header">
               <div class="card-title-section">
@@ -78,18 +80,22 @@
                   <div class="material-subtitle">Курс: {{ material.course }}</div>
                 </div>
               </div>
-              <div class="material-count">0</div>
+              <div class="material-count">
+                <a href="{% url 'comments-student' material.id %}">
+                <i class="fas fa-comment"></i>
+                </a>
+              </div>
             </div>
             <p class="material-description">{{ material.description }}</p>
-            <a href="{{ material.file.url }}" class="material-link">
+            <a href="{{ material.file.url }}" class="material-link" download>
               <i class="fas fa-download"></i>
-              {{ material.file.name|cut:'static/materials/' }}
+              {{ material.file.name|cut:'materials/' }}
             </a>
           </div>
-        </div>
-      {% empty %}
-        <p>У вас ще немає матеріалів.</p>
-      {% endfor %}
+        {% empty %}
+          <p>У вас ще немає матеріалів.</p>
+        {% endfor %}
+      </div>
     </main>
   </body>
 </html>

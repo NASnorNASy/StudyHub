@@ -205,8 +205,11 @@ body {
     left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-muted);
+    color: #888;
+    background: none;
+    border: none;
 }
+
 
 .add-btn {
     background-color: var(--primary-purple);

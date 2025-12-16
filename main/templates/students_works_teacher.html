@@ -59,9 +59,8 @@
       <div class="main-header">
         <h1 class="page-title">Роботи студентів</h1>
       </div>
-
       {% for submission in submissions %}
-        <section class="works-list">
+        <div class="works-list">
           <form method="POST">
             {% csrf_token %}
 
@@ -75,7 +74,7 @@
                 <div class="work-meta">
                   <div class="work-meta-item">
                     <i class="far fa-file"></i>
-                    <span>Файл: {{ submission.file.name|cut:'static/submissions/' }}</span>
+                    <span>Файл: {{ submission.file.name|cut:'submissions/' }}</span>
                   </div>
                 </div>
               </div>
@@ -102,7 +101,7 @@
               </div>
             </div>
           </form>
-        </section>
+        </div>
       {% endfor %}
     </main>
   </body>

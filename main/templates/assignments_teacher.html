@@ -58,53 +58,34 @@
     <main class="main-content">
       <div class="main-header">
         <h1 class="page-title">Завдання</h1>
-        <button class="btn-create">
+        <a href="{% url 'create-assignments-teacher' %}" class="btn-create">
           <i class="fas fa-plus"></i>
           <span>Створити завдання</span>
-        </button>
+        </a>
       </div>
 
-      <section class="tasks-container">
-        <article class="task-card">
-          <div class="task-icon">
-            <i class="far fa-calendar-alt"></i>
-          </div>
+      <div class="tasks-container">
+        {% for assignment in assignments %}
+          {% if assignment.course.teacher == user %}
+            <div class="task-card">
+              <div class="task-content">
+                <h2 class="task-title">{{ assignment.title }}</h2>
+                <p class="task-subtitle">Курс: {{ assignment.course }}</p>
+                <p class="task-description">{{ assignment.description }}</p>
 
-          <div class="task-content">
-            <h2 class="task-title">Лабораторна робота №1</h2>
-            <p class="task-subtitle">Основи програмування на Python</p>
-            <p class="task-description">Створіть програму для обчислення факторіала числа, введеного користувачем. Програма має перевіряти коректність введення даних та обробляти винятки.</p>
-
-            <div class="task-footer">
-              <div class="task-deadline">
-                <i class="far fa-calendar"></i>
-                <span>Дедлайн: 15.12.2025</span>
+                <div class="task-footer">
+                  <div class="task-deadline">
+                    <i class="far fa-calendar"></i>
+                    <span>Дедлайн: {{ assignment.deadline }}</span>
+                  </div>
+                </div>
               </div>
-              <div class="task-status">Залишилось 2 дні</div>
             </div>
-          </div>
-        </article>
-
-        <article class="task-card">
-          <div class="task-icon">
-            <i class="far fa-calendar-alt"></i>
-          </div>
-
-          <div class="task-content">
-            <h2 class="task-title">Курсова робота</h2>
-            <p class="task-subtitle">Бази даних та SQL</p>
-            <p class="task-description">Розробіть базу даних для системи управління бібліотекою. Включіть таблиці для книг, читачів, видач та повернень. Напишіть SQL-запити для отримання статистики.</p>
-
-            <div class="task-footer">
-              <div class="task-deadline">
-                <i class="far fa-calendar"></i>
-                <span>Дедлайн: 20.12.2025</span>
-              </div>
-              <div class="task-status">Залишилось 7 днів</div>
-            </div>
-          </div>
-        </article>
-      </section>
+          {% endif %}
+        {% empty %}
+          <p>У вас немає створених завдань.</p>
+        {% endfor %}
+      </div>
     </main>
   </body>
 </html>

@@ -287,3 +287,20 @@ body {
 .material-link i {
     margin-right: 8px;
 }
+.comment {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f7f7fb;
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-form textarea {
+  flex: 1;
+  border-radius: 12px;
+  padding: 10px;
+}

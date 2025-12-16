@@ -65,7 +65,7 @@
       </div>
 
       {% for item in assignments_student_list %}
-        {% if item.assignment.id and item.has_submitted %}
+        {% if item.has_submitted %}
           <div class="assignment-card">
             <div class="card-content-wrapper">
               <div class="assignment-details">
@@ -77,7 +77,7 @@
 
               <div class="submission-meta">
                 <p>
-                  Файл: <strong>{{ item.submission.file.name|cut:'static/submissions/' }}</strong>
+                  Файл: <strong>{{ item.submission.file.name|cut:'submissions/' }}</strong>
                 </p>
                 <p>Здано</p>
               </div>
@@ -85,7 +85,7 @@
               <div class="assignment-actions">
                 {% if item.score is not None %}
                   <div class="score-badge">
-                    <span>★ {{ item.score }}</span>
+                    <span>★ {{ item.score|floatformat }}</span>
                   </div>
                 {% endif %}
 
@@ -97,21 +97,6 @@
       {% empty %}
         <p>У вас немає зданих робіт.</p>
       {% endfor %}
-      {% if assignments_student_list.paginator.num_pages > 1 %}
-        <div class="pagination-container">
-          <span class="step-links">
-            {% if assignments_student_list.has_previous %}
-              <a href="?page={{ assignments_student_list.previous_page_number }}" class="btn-pag">&laquo;</a>
-            {% endif %}
-
-            <span class="current">Сторінка {{ assignments_student_list.number }} із {{ assignments_student_list.paginator.num_pages }}</span>
-
-            {% if assignments_student_list.has_next %}
-              <a href="?page={{ assignments_student_list.next_page_number }}" class="btn-pag">&raquo;</a>
-            {% endif %}
-          </span>
-        </div>
-      {% endif %}
     </main>
   </body>
 </html>

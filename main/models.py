@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from django.contrib.auth.models import User
 
 
@@ -28,17 +27,8 @@ class Material(models.Model):
         related_name="materials",
         verbose_name="Курс",
     )
-    teacher = models.ForeignKey(  
-        User,
-        on_delete=models.CASCADE,
-        verbose_name="Викладач",
-        null=True, 
-        blank=True
-    )
     title = models.CharField(max_length=200, verbose_name="Назва матеріалу")
-    file = models.FileField(
-        upload_to="materials/", verbose_name="Файл матеріалу"
-    )
+    file = models.FileField(upload_to="materials/", verbose_name="Файл матеріалу")
     description = models.TextField(blank=True, verbose_name="Опис матеріалу")
 
     def __str__(self):
@@ -83,7 +73,7 @@ class Submission(models.Model):
     )
     file = models.FileField(upload_to="submissions/", verbose_name="Файл здачі")
     grade = models.DecimalField(
-        max_digits=3, decimal_places=1, null=True, blank=True, verbose_name="Оцінка"
+        max_digits=5, decimal_places=2, null=True, blank=True, verbose_name="Оцінка"
     )
 
     def __str__(self):
@@ -92,3 +82,14 @@ class Submission(models.Model):
     class Meta:
         verbose_name = "Здача"
         verbose_name_plural = "Здачі"
+
+
+class Comment(models.Model):
+    material = models.ForeignKey(
+        Material,
+        related_name="comments",
+        on_delete=models.CASCADE
+    )
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

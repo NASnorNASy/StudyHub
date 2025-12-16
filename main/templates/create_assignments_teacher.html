@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Завдання</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/assignments_teacher_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="user-role">Викладач</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-teacher' %}" class="nav-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'materials-teacher' %}" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-teacher' %}" class="nav-item active">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'students-works-teacher' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Роботи студентів</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Створити завдання</h1>
+      </div>
+
+      <div class="create-assignment-container">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_course">Курс:</label>
+            <select id="id_course" name="course" class="course-select" required>
+              {% for course in courses %}
+                {% if course.teacher == user %}
+                  <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="id_title">Назва завдання:</label>
+            <input type="text" id="id_title" name="title" class="title-input" placeholder="Введіть назву завдання" required />
+          </div>
+          <div class="form-group">
+            <label for="id_description">Опис завдання:</label>
+            <textarea id="id_description" name="description" placeholder="Введіть опис завдання" class="description-input"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deadline">Дедлайн:</label>
+            <input type="datetime-local" id="deadline" name="deadline" required />
+          </div>
+          {% if error %}
+            <p>{{ error }}</p>
+          {% endif %}
+          <div class="actions-buttons">
+            <button type="submit" class="submit-btn">Створити завдання</button>
+            <a href="{% url 'assignments-teacher' %}" class="cancel-btn">Скасувати</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

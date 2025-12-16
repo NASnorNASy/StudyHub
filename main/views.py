@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Course, Material, Assignment, Submission
+from .models import Course, Material, Assignment, Submission, Comment
 from django.contrib.auth.decorators import (
     login_required,
     user_passes_test,
@@ -9,7 +9,6 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import MaterialForm, CourseForm
 
 
 def login_view(request):
@@ -109,7 +108,19 @@ def home_student(request):
 @login_required(login_url="login")
 @user_passes_test(is_student, login_url="login")
 def all_courses_student(request):
-    return render(request, "all_courses_student.html")
+    courses = Course.objects.all()
+
+    paginator = Paginator(courses, 6)
+    page_number = request.GET.get("page")
+
+    try:
+        paged_courses = paginator.page(page_number)
+    except PageNotAnInteger:
+        paged_courses = paginator.page(1)
+    except EmptyPage:
+        paged_courses = paginator.page(paginator.num_pages)
+
+    return render(request, "all_courses_student.html", {"courses": paged_courses})
 
 
 @login_required(login_url="login")
@@ -117,7 +128,35 @@ def all_courses_student(request):
 def materials_student(request):
     materials_student = Material.objects.all()
 
-    return render(request, "materials_student.html")
+    search_materials = request.GET.get("search", "").strip().lower()
+    if search_materials:
+        materials_student = list(materials_student)
+        materials_student = [
+            material
+            for material in materials_student
+            if search_materials in material.title.lower()
+        ]
+
+    return render(
+        request, "materials_student.html", {"materials_student": materials_student}
+    )
+
+
+@login_required(login_url="login")
+@user_passes_test(is_student, login_url="login")
+def comments_student(request, material_id):
+    material = Material.objects.get(id=material_id)
+    comments = material.comments.all()
+
+    if request.method == "POST":
+        Comment.objects.create(
+            material=material, author=request.user, text=request.POST["text"]
+        )
+        return redirect(request.path)
+
+    return render(
+        request, "comments_student.html", {"material": material, "comments": comments}
+    )
 
 
 @login_required(login_url="login")
@@ -162,20 +201,13 @@ def assignments_student_view(request, assignment_id):
 
     if request.method == "POST":
         if not existing_submission:
-            try:
-                uploaded_file = request.FILES.get("file_input_name")
-                if uploaded_file:
-                    Submission.objects.create(
-                        assignment=assignment, student=user, file=uploaded_file
-                    )
-                    submission_instance = Submission(
-                        file=uploaded_file, user=request.user
-                    )
-                    submission_instance.save()
-                    return redirect("assignments-student")
-                else:
-                    pass
-            except Exception as e:
+            uploaded_file = request.FILES.get("file")
+            if uploaded_file:
+                Submission.objects.create(
+                    assignment=assignment, student=user, file=uploaded_file
+                )
+                return redirect("assignments-student")
+            else:
                 pass
 
     context = {
@@ -215,23 +247,11 @@ def my_works_student(request):
             }
         )
 
-    PAGINATE_BY = 5
-    paginator = Paginator(assignments_list_for_template, PAGINATE_BY)
-    page_number = request.GET.get("page")
-
-    try:
-        # Отримуємо об'єкт поточної сторінки, який ми будемо використовувати в шаблоні
-        paged_assignments_list = paginator.page(page_number)
-    except PageNotAnInteger:
-        paged_assignments_list = paginator.page(1)
-    except EmptyPage:
-        paged_assignments_list = paginator.page(paginator.num_pages)
-
     return render(
         request,
         "my_works_student.html",
         {
-            "assignments_student_list": paged_assignments_list,
+            "assignments_student_list": assignments_list_for_template,
         },
     )
 
@@ -273,8 +293,15 @@ def create_course_teacher(request):
 @login_required(login_url="login")
 @user_passes_test(is_teacher, login_url="login")
 def materials_teacher(request):
-    # Ми шукаємо матеріали, чий курс (course) має вчителя (teacher)
     materials = Material.objects.filter(course__teacher=request.user)
+
+    search_materials_teacher = request.GET.get("searcher", "").strip().lower()
+    if search_materials_teacher:
+        materials = list(materials)
+        materials = [
+            m_t for m_t in materials if search_materials_teacher in m_t.title.lower()
+        ]
+
     return render(request, "materials_teacher.html", {"materials": materials})
 
 
@@ -288,17 +315,14 @@ def create_materials_teacher(request):
         course = Course.objects.get(id=course_id)
         title = request.POST.get("title")
         description = request.POST.get("description")
-        file = request.POST.get("file")
+        file = request.FILES.get("file")
 
         if not course or not title or not description or not file:
             error = "Всі поля повинні бути заповнені."
             return render(request, "create_course_teacher.html", {"error": error})
 
         Material.objects.create(
-            course=course,
-            title=title,
-            description=description,
-            file=file
+            course=course, title=title, description=description, file=file
         )
         return redirect("materials-teacher")
 
@@ -311,8 +335,54 @@ def create_materials_teacher(request):
 
 @login_required(login_url="login")
 @user_passes_test(is_teacher, login_url="login")
+def comments_teacher(request, material_id):
+    material = Material.objects.get(id=material_id)
+    comments = material.comments.all()
+
+    if request.method == "POST":
+        Comment.objects.create(
+            material=material, author=request.user, text=request.POST["text"]
+        )
+        return redirect(request.path)
+
+    return render(
+        request, "comments_teacher.html", {"material": material, "comments": comments}
+    )
+
+
+@login_required(login_url="login")
+@user_passes_test(is_teacher, login_url="login")
 def assignments_teacher(request):
-    return render(request, "assignments_teacher.html")
+    assignments = Assignment.objects.all()
+    return render(request, "assignments_teacher.html", {"assignments": assignments})
+
+
+@permission_required("main.add_assignment", raise_exception=True, login_url="login")
+@login_required(login_url="login")
+@user_passes_test(is_teacher, login_url="login")
+def create_assignments_teacher(request):
+    error = ""
+    if request.method == "POST":
+        course_id = request.POST.get("course")
+        course = Course.objects.get(id=course_id)
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        deadline = request.POST.get("deadline")
+
+        if not course or not title or not description or not deadline:
+            error = "Всі поля повинні бути заповнені."
+            return render(request, "create_assignments_teacher.html", {"error": error})
+
+        Assignment.objects.create(
+            course=course, title=title, description=description, deadline=deadline
+        )
+        return redirect("assignments-teacher")
+
+    courses = Course.objects.all()
+
+    return render(
+        request, "create_assignments_teacher.html", {"courses": courses, "error": error}
+    )
 
 
 @login_required(login_url="login")
