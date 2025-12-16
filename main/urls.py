@@ -9,9 +9,24 @@ urlpatterns = [
     path("all-courses-student/", views.all_courses_student, name="all-courses-student"),
     path("materials-student/", views.materials_student, name="materials-student"),
     path("assignments-student/", views.assignments_student, name="assignments-student"),
+    path(
+        "assignments-student-view/<int:assignment_id>/",
+        views.assignments_student_view,
+        name="assignments-student-view",
+    ),
     path("my-works-student/", views.my_works_student, name="my-works-student"),
     path("home-teacher/", views.home_teacher, name="home-teacher"),
+    path(
+        "create-course-teacher/",
+        views.create_course_teacher,
+        name="create-course-teacher",
+    ),
     path("materials-teacher/", views.materials_teacher, name="materials-teacher"),
+    path(
+        "create-materials-teacher/",
+        views.create_materials_teacher,
+        name="create-materials-teacher",
+    ),
     path("assignments-teacher/", views.assignments_teacher, name="assignments-teacher"),
     path(
         "students-works-teacher/",

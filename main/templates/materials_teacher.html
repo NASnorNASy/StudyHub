@@ -63,98 +63,43 @@
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="Пошук матеріалів..." />
           </div>
-          <button class="add-btn">
+          <a href="{% url 'create-materials-teacher' %}" class="add-btn">
             <i class="fas fa-plus"></i>
             <span>Додати матеріал</span>
-          </button>
+          </a>
         </div>
       </div>
 
-      <section class="materials-container">
-        <article class="material-card">
-          <div class="card-header">
-            <div class="material-info">
-              <div class="material-title-container">
-                <h3 class="material-title">Вступ до Python</h3>
-                <p class="material-subtitle">Основи програмування на Python</p>
+      <div class="materials-container">
+        {% for material in materials %}
+          <div class="material-card">
+            <div class="card-header">
+              <div class="material-info">
+                <div class="material-title-container">
+                  <h3 class="material-title">{{ material.title }}</h3>
+                  <p class="material-subtitle">Курс: {{ material.course }}</p>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="comments-btn"><i class="fas fa-comment"></i></button>
               </div>
             </div>
-            <div class="card-actions">
-              <button class="comments-btn">
-                <i class="fas fa-comment"></i>
-                <span class="comments-count">2</span>
-              </button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
 
-          <p class="material-description">Перші кроки: встановлення, синтаксис, змінні, типи даних та базові операції.</p>
+            <p class="material-description">{{ material.description }}</p>
 
-          <div class="file-container">
-            <div class="file-info">
-              <i class="fas fa-file-pdf file-icon"></i>
-              <span class="file-name">python_intro.pdf</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i></button>
-          </div>
-        </article>
-
-        <article class="material-card">
-          <div class="card-header">
-            <div class="material-info">
-              <div class="material-title-container">
-                <h3 class="material-title">Цикли та умови</h3>
-                <p class="material-subtitle">Управління потоком виконання</p>
+            <a href="{{ material.file.url }}"  class="file-container">
+              <div>
+                <div class="file-info">
+                  <i class="fas fa-download"></i>
+                  <span class="file-name">{{ material.file.name|cut:'static/materials/' }}</span>
+                </div>
               </div>
-            </div>
-            <div class="card-actions">
-              <button class="comments-btn">
-                <i class="fas fa-comment"></i>
-                <span class="comments-count">0</span>
-              </button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
+            </a>
           </div>
-
-          <p class="material-description">Вивчення умовних операторів if, elif, else та циклів for і while з прикладами.</p>
-
-          <div class="file-container">
-            <div class="file-info">
-              <i class="fas fa-file-pdf file-icon"></i>
-              <span class="file-name">loops_conditions.pdf</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i></button>
-          </div>
-        </article>
-
-        <article class="material-card">
-          <div class="card-header">
-            <div class="material-info">
-              <div class="material-title-container">
-                <h3 class="material-title">Основи React</h3>
-                <p class="material-subtitle">Сучасний фронтенд-фреймворк</p>
-              </div>
-            </div>
-            <div class="card-actions">
-              <button class="comments-btn">
-                <i class="fas fa-comment"></i>
-                <span class="comments-count">2</span>
-              </button>
-              <button class="delete-btn"><i class="fas fa-trash"></i></button>
-            </div>
-          </div>
-
-          <p class="material-description">Введення в React: компоненти, JSX, стан та пропси. Практичні приклади.</p>
-
-          <div class="file-container">
-            <div class="file-info">
-              <i class="fas fa-file-pdf file-icon"></i>
-              <span class="file-name">react_basics.pdf</span>
-            </div>
-            <button class="download-btn"><i class="fas fa-download"></i></button>
-          </div>
-        </article>
-      </section>
+        {% empty %}
+          <p>У вас поки немає матеріалів.</p>
+        {% endfor %}
+      </div>
     </main>
   </body>
 </html>

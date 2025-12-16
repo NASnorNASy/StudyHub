@@ -68,58 +68,28 @@
         </div>
       </div>
 
-      <div class="materials-list">
-        <div class="material-card">
-          <div class="card-header">
-            <div class="card-title-section">
-              <div>
-                <div class="material-title">Вступ до Python</div>
-                <div class="material-subtitle">Основи програмування на Python</div>
+      {% for material in materials_student %}
+        <div class="materials-list">
+          <div class="material-card">
+            <div class="card-header">
+              <div class="card-title-section">
+                <div>
+                  <div class="material-title">{{ material.title }}</div>
+                  <div class="material-subtitle">Курс: {{ material.course }}</div>
+                </div>
               </div>
+              <div class="material-count">0</div>
             </div>
-            <div class="material-count">2</div>
+            <p class="material-description">{{ material.description }}</p>
+            <a href="{{ material.file.url }}" class="material-link">
+              <i class="fas fa-download"></i>
+              {{ material.file.name|cut:'static/materials/' }}
+            </a>
           </div>
-          <p class="material-description">Перші кроки: встановлення, синтаксис, змінні. Огляд основних конструкцій мови та приклади коду.</p>
-          <a href="#" class="material-link">
-            <i class="fas fa-download"></i>
-            python_intro.pdf
-          </a>
         </div>
-
-        <div class="material-card">
-          <div class="card-header">
-            <div class="card-title-section">
-              <div>
-                <div class="material-title">Бази даних та SQL</div>
-                <div class="material-subtitle">Основні принципи роботи з даними</div>
-              </div>
-            </div>
-            <div class="material-count">5</div>
-          </div>
-          <p class="material-description">Основи реляційних баз даних, мова запитів SQL, проектування таблиць та взаємодія з даними.</p>
-          <a href="#" class="material-link">
-            <i class="fas fa-download"></i>
-            databases_sql.pdf
-          </a>
-        </div>
-
-        <div class="material-card">
-          <div class="card-header">
-            <div class="card-title-section">
-              <div>
-                <div class="material-title">Алгоритми та структури даних</div>
-                <div class="material-subtitle">Основи ефективного програмування</div>
-              </div>
-            </div>
-            <div class="material-count">0</div>
-          </div>
-          <p class="material-description">Вивчення основних алгоритмів сортування, пошуку та структур даних: масиви, списки, стеки, черги, дерева.</p>
-          <a href="#" class="material-link">
-            <i class="fas fa-download"></i>
-            algorithms_data_structures.pdf
-          </a>
-        </div>
-      </div>
+      {% empty %}
+        <p>У вас ще немає матеріалів.</p>
+      {% endfor %}
     </main>
   </body>
 </html>

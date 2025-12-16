@@ -60,147 +60,50 @@
         <h1 class="page-title">Роботи студентів</h1>
       </div>
 
-      <section class="works-list">
-        <div class="work-card">
-          <div class="work-details">
-            <h3 class="work-title">Лабораторна робота №1</h3>
-            <p class="work-course">Основи програмування на Python</p>
-            <p class="work-student">Іван Петренко</p>
-            <div class="work-meta">
-              <div class="work-meta-item">
-                <i class="far fa-file"></i>
-                <span>Файл: factorial.py</span>
+      {% for submission in submissions %}
+        <section class="works-list">
+          <form method="POST">
+            {% csrf_token %}
+
+            <input type="hidden" name="submission_id" value="{{ submission.id }}" />
+
+            <div class="work-card">
+              <div class="work-details">
+                <h3 class="work-title">{{ submission.assignment.title }}</h3>
+                <p class="work-course">{{ submission.assignment.course.title }}</p>
+                <p class="work-student">{{ submission.student.first_name }} {{ submission.student.last_name }}</p>
+                <div class="work-meta">
+                  <div class="work-meta-item">
+                    <i class="far fa-file"></i>
+                    <span>Файл: {{ submission.file.name|cut:'static/submissions/' }}</span>
+                  </div>
+                </div>
               </div>
-              <div class="work-meta-item">
-                <i class="far fa-calendar-alt"></i>
-                <span>Здано: 08.12.2025, 10:30:00</span>
-              </div>
-            </div>
-          </div>
 
-          <div class="work-grade">95</div>
+              <div class="work-grade">{{ submission.grade|default:''|floatformat }}</div>
+              {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+              {% endif %}
 
-          <div class="work-actions">
-            <button class="btn btn-primary">
-              <i class="fas fa-download"></i>
-              <span>Завантажити</span>
-            </button>
+              <div class="work-actions">
+                <a href="{{ submission.file.url }}" class="btn btn-primary" download>
+                  <i class="fas fa-download"></i>
+                  <span>Завантажити</span>
+                </a>
 
-            <div class="grade-input">
-              <input type="text" class="grade-input-field" placeholder="90" maxlength="3" />
-              <button class="btn btn-secondary">
-                <i class="fas fa-edit"></i>
-                <span>Виставити оцінку</span>
-              </button>
-            </div>
-          </div>
-        </div>
+                <div class="grade-input">
+                  <input type="number" class="grade-input-field" name="grade" placeholder="{{ submission.grade|default:'-'|floatformat }}" maxlength="3" />
 
-        <div class="work-card">
-          <div class="work-details">
-            <h3 class="work-title">Проєкт: Todo App</h3>
-            <p class="work-course">Веб-розробка з React</p>
-            <p class="work-student">Марія Шевченко</p>
-            <div class="work-meta">
-              <div class="work-meta-item">
-                <i class="far fa-file-archive"></i>
-                <span>Файл: todo-app.zip</span>
-              </div>
-              <div class="work-meta-item">
-                <i class="far fa-calendar-alt"></i>
-                <span>Здано: 07.12.2025, 14:15:00</span>
+                  <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-edit"></i>
+                    <span>Виставити оцінку</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="work-grade">88</div>
-
-          <div class="work-actions">
-            <button class="btn btn-primary">
-              <i class="fas fa-download"></i>
-              <span>Завантажити</span>
-            </button>
-
-            <div class="grade-input">
-              <input type="text" class="grade-input-field" placeholder="88" maxlength="3" />
-              <button class="btn btn-secondary">
-                <i class="fas fa-edit"></i>
-                <span>Виставити оцінку</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="work-card">
-          <div class="work-details">
-            <h3 class="work-title">Лабораторна робота №2</h3>
-            <p class="work-course">Основи програмування на Python</p>
-            <p class="work-student">Олексій Іваненко</p>
-            <div class="work-meta">
-              <div class="work-meta-item">
-                <i class="far fa-file"></i>
-                <span>Файл: calculator.py</span>
-              </div>
-              <div class="work-meta-item">
-                <i class="far fa-calendar-alt"></i>
-                <span>Здано: 05.12.2025, 09:45:00</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="work-grade">78</div>
-
-          <div class="work-actions">
-            <button class="btn btn-primary">
-              <i class="fas fa-download"></i>
-              <span>Завантажити</span>
-            </button>
-
-            <div class="grade-input">
-              <input type="text" class="grade-input-field" placeholder="78" maxlength="3" />
-              <button class="btn btn-secondary">
-                <i class="fas fa-edit"></i>
-                <span>Виставити оцінку</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="work-card">
-          <div class="work-details">
-            <h3 class="work-title">База даних студентів</h3>
-            <p class="work-course">Бази даних SQL</p>
-            <p class="work-student">Андрій Сидоренко</p>
-            <div class="work-meta">
-              <div class="work-meta-item">
-                <i class="far fa-file"></i>
-                <span>Файл: students_db.sql</span>
-              </div>
-              <div class="work-meta-item">
-                <i class="far fa-calendar-alt"></i>
-                <span>Здано: 04.12.2025, 16:20:00</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="work-grade">92</div>
-
-          <div class="work-actions">
-            <button class="btn btn-primary">
-              <i class="fas fa-download"></i>
-              <span>Завантажити</span>
-            </button>
-
-            <div class="grade-input">
-              <input type="text" class="grade-input-field" placeholder="92" maxlength="3" />
-              <button class="btn btn-secondary">
-                <i class="fas fa-edit"></i>
-                <span>Виставити оцінку</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+          </form>
+        </section>
+      {% endfor %}
     </main>
   </body>
 </html>

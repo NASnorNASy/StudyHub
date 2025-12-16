@@ -5,13 +5,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Мої курси</title>
+    <title>Матеріали</title>
     <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="{% static 'css/home_teacher_styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materials_teacher_styles.css' %}" />
   </head>
   <body>
     <aside class="sidebar">
@@ -28,11 +28,11 @@
       </div>
 
       <nav class="nav-menu">
-        <a href="{% url 'home-teacher' %}" class="nav-item active">
+        <a href="{% url 'home-teacher' %}" class="nav-item">
           <i class="fas fa-graduation-cap"></i>
           <span class="nav-text">Курси</span>
         </a>
-        <a href="{% url 'materials-teacher' %}" class="nav-item">
+        <a href="{% url 'materials-teacher' %}" class="nav-item active">
           <i class="fas fa-folder-open"></i>
           <span class="nav-text">Матеріали</span>
         </a>
@@ -57,25 +57,42 @@
 
     <main class="main-content">
       <div class="main-header">
-        <h1 class="page-title">Мої курси</h1>
-        <a href="{% url 'create-course-teacher' %}" class="create-course-btn">
-          <i class="fas fa-plus"></i>
-          <span>Створити курс</span>
-        </a>
+        <h1 class="page-title">Створити матеріал</h1>
       </div>
 
-      <div class="courses-grid">
-        {% for course in courses %}
-          {% if course.teacher == user %}
-            <div class="course-card">
-              <h3 class="course-title">{{ course.title }}</h3>
-              <div class="course-author">{{ course.teacher.first_name }} {{ course.teacher.last_name }}</div>
-              <p class="course-description">{{ course.description }}</p>
-            </div>
+      <div class="create-material-container">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_course">Курс:</label>
+            <select id="id_course" name="course" class="course-select" required>
+              {% for course in courses %}
+                {% if course.teacher == user %}
+                  <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="id_title">Назва матеріалу:</label>
+            <input type="text" id="id_title" name="title" class="title-input" placeholder="Введіть назву матеріалу" required />
+          </div>
+          <div class="form-group">
+            <label for="id_description">Опис матеріалу:</label>
+            <textarea id="id_description" name="description" placeholder="Введіть опис матеріалу" class="description-input"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="file">Виберіть файл для завантаження:</label>
+            <input type="file" id="file" name="file" required />
+          </div>
+          {% if error %}
+            <p>{{ error }}</p>
           {% endif %}
-        {% empty %}
-          <p>У вас поки немає курсів.</p>
-        {% endfor %}
+          <div class="actions-buttons">
+            <button type="submit" class="submit-btn">Створити матеріал</button>
+            <a href="{% url 'materials-teacher' %}" class="cancel-btn">Скасувати</a>
+          </div>
+        </form>
       </div>
     </main>
   </body>

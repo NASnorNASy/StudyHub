@@ -11,4 +11,4 @@ urlpatterns = [
     path("", include("main.urls")),
     path("", RedirectView.as_view(pattern_name="login", permanent=False)),
     path("logout/", auth_views.LogoutView.as_view(next_page="login"), name="logout"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

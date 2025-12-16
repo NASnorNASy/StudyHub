@@ -26,10 +26,19 @@ class Material(models.Model):
         Course,
         on_delete=models.CASCADE,
         related_name="materials",
-        verbose_name="Course",
+        verbose_name="Курс",
+    )
+    teacher = models.ForeignKey(  
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Викладач",
+        null=True, 
+        blank=True
     )
     title = models.CharField(max_length=200, verbose_name="Назва матеріалу")
-    file = models.FileField(upload_to="static/materials/", verbose_name="Файл матеріалу")
+    file = models.FileField(
+        upload_to="materials/", verbose_name="Файл матеріалу"
+    )
     description = models.TextField(blank=True, verbose_name="Опис матеріалу")
 
     def __str__(self):
@@ -72,13 +81,13 @@ class Submission(models.Model):
         limit_choices_to={"groups__name": "Студент"},
         verbose_name="Студент",
     )
-    file = models.FileField(upload_to="static/submissions/", verbose_name="Файл здачі")
+    file = models.FileField(upload_to="submissions/", verbose_name="Файл здачі")
     grade = models.DecimalField(
-        max_digits=5, decimal_places=2, null=True, blank=True, verbose_name="Оцінка"
+        max_digits=3, decimal_places=1, null=True, blank=True, verbose_name="Оцінка"
     )
 
     def __str__(self):
-        return self.student
+        return self.student.username
 
     class Meta:
         verbose_name = "Здача"

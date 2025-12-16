@@ -183,6 +183,10 @@ body {
     gap: 30px;
 }
 
+.task-link {
+    text-decoration: none;
+}
+
 .task-card {
     background-color: white;
     border-radius: 12px;

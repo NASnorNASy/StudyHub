@@ -57,25 +57,28 @@
 
     <main class="main-content">
       <div class="main-header">
-        <h1 class="page-title">Мої курси</h1>
-        <a href="{% url 'create-course-teacher' %}" class="create-course-btn">
-          <i class="fas fa-plus"></i>
-          <span>Створити курс</span>
-        </a>
+        <h1 class="page-title">Створити курс</h1>
       </div>
 
-      <div class="courses-grid">
-        {% for course in courses %}
-          {% if course.teacher == user %}
-            <div class="course-card">
-              <h3 class="course-title">{{ course.title }}</h3>
-              <div class="course-author">{{ course.teacher.first_name }} {{ course.teacher.last_name }}</div>
-              <p class="course-description">{{ course.description }}</p>
-            </div>
+      <div class="create-course-container">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_title">Назва курсу:</label>
+            <input type="text" id="id_title" name="title" class="title-input" placeholder="Введіть назву курсу" required />
+          </div>
+          <div class="form-group">
+            <label for="id_description">Опис курсу:</label>
+            <textarea id="id_description" name="description" placeholder="Введіть опис курсу" class="description-input"></textarea>
+          </div>
+          {% if error %}
+            <p>{{ error }}</p>
           {% endif %}
-        {% empty %}
-          <p>У вас поки немає курсів.</p>
-        {% endfor %}
+          <div class="actions-buttons">
+            <button type="submit" class="submit-btn">Створити курс</button>
+            <a href="{% url 'home-teacher' %}" class="cancel-btn">Скасувати</a>
+          </div>
+        </form>
       </div>
     </main>
   </body>

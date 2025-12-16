@@ -221,6 +221,7 @@ body {
     align-items: center;
     gap: 8px;
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .add-btn:hover {
@@ -229,17 +230,18 @@ body {
 }
 
 .materials-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 24px;
 }
 
 .material-card {
-    background-color: var(--text-white);
-    border-radius: var(--border-radius);
+    background-color: var(--gray-light);
+    border-radius: var(--radius-lg);
     padding: 24px;
-    box-shadow: 0 4px 12px var(--card-shadow);
+    box-shadow: 0 4px 12px var(--shadow-strong);
     transition: var(--transition);
+    border: 1px solid rgb(220, 220, 220);
 }
 
 .material-card:hover {
@@ -301,22 +303,6 @@ body {
     background-color: rgba(108, 77, 255, 0.2);
 }
 
-.comments-count {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background-color: var(--primary-purple);
-    color: var(--text-white);
-    font-size: 12px;
-    font-weight: 600;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .delete-btn {
     background: transparent;
     border: none;
@@ -350,6 +336,8 @@ body {
     border-radius: 50px;
     padding: 12px 20px;
     transition: var(--transition);
+    text-decoration: none;
+    color: var(--black);
 }
 
 .file-container:hover {

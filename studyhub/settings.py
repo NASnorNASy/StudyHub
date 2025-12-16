@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,6 +85,9 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -121,41 +125,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home-student"
 LOGOUT_REDIRECT_URL = "login"
-
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "null": {
-            "class": "logging.NullHandler",
-        },
-        "signals_file": {
-            "class": "logging.FileHandler",
-            "filename": str(BASE_DIR / "signals.log"),
-            "formatter": "default",
-        },
-    },
-    "formatters": {
-        "default": {
-            "format": "[{asctime}] {levelname} {name}: {message}",
-            "style": "{",
-        }
-    },
-    "loggers": {
-        "django.server": {
-            "handlers": ["null"],
-            "level": "INFO",
-            "propagate": False,
-        },
-        "signals": {
-            "handlers": ["signals_file"],
-            "level": "INFO",
-            "propagate": False,
-        },
-    },
-}

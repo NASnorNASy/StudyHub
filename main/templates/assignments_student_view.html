@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Мої завдання</title>
+    <title>Мої завдання деталі</title>
     <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,61 +60,59 @@
     </aside>
 
     <main class="main-content">
-      <div class="main-header">
-        <h1 class="page-title">Мої завдання</h1>
-      </div>
+      {% if assignment %}
+        <div class="main-header">
+          <h1 class="page-title">{{ assignment.title }}</h1>
+        </div>
 
-      <!-- Змінили назву змінної на 'assignments_student_list' та ітеруємо як 'item' -->
-      {% for item in assignments_student_list %}
-        {% if item.assignment.id %}
-          <!-- Посилання використовує item.assignment.id -->
-          <a href="{% url 'assignments-student-view' assignment_id=item.assignment.id %}" class="task-link">
-            <div class="task-card">
-              <div class="task-header">
-                <!-- Використовуємо item.has_submitted -->
-                {% if item.has_submitted %}
-                  <div class="task-status status-success">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Роботу здано</span>
-                  </div>
-                {% else %}
-                  <div class="task-status status-pending">
-                    <i class="fas fa-clock"></i>
-                    <span>Очікує виконання</span>
-                  </div>
-                {% endif %}
-              </div>
+        <div class="assignment-details">
+          <div class="description-section">
+            <h2>Опис завдання</h2>
+            <p>{{ assignment.description|linebreaksbr }}</p>
+          </div>
 
-              <div class="task-title">
-                <div class="task-details">
-                  <h3>{{ item.assignment.title }}</h3>
-                  <p class="task-course">{{ item.assignment.course.title }}</p>
-                </div>
-              </div>
+          <div class="info-section">
+            <p>
+              <strong>Курс:</strong> {{ assignment.course.title }}
+            </p>
+            <p>
+              <strong>Термін виконання:</strong> {{ assignment.deadline|date:'d M Y H:i' }}
+            </p>
 
-              <p class="task-description">{{ item.assignment.description|truncatechars:100 }}</p>
+            {% if submission %}
+              <div class="status status-submitted">Роботу здано</div>
+              {% if submission.grade %}
+                <p>
+                  <strong>Оцінка:</strong> {{ submission.grade }} балів
+                </p>
+              {% endif %}
+            {% else %}
+              <div class="status status-pending">Очікує на здачу</div>
+            {% endif %}
+          </div>
+        </div>
 
-              <div class="task-submission">
-                {% if item.has_submitted %}
-                  <div class="submission-info">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Здано</span> <!-- Просто статус "Здано", без дати -->
-                  </div>
-                {% endif %}
-              </div>
+        {% if not submission %}
+          <div class="submission-section">
+            <h3>Здати роботу</h3>
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
 
-              <div class="task-deadline">
-                <i class="far fa-calendar-alt"></i>
-                <span>Дедлайн: <span class="deadline-date">{{ item.assignment.deadline|date:'d M Y H:i' }}</span></span>
-              </div>
-            </div>
-          </a>
+              <label for="file-upload">Виберіть файл для завантаження:</label>
+              <input type="file" id="file-upload" name="file_input_name" required />
+
+              <button type="submit" class="submit-btn">Відправити завдання</button>
+            </form>
+          </div>
         {% else %}
-          <div class="task-card">Завдання {{ item.assignment.title }} має помилку ID.</div>
+          <div class="submission-section">
+            <h3>Ваша здача:</h3>
+            <p>Файл: {{ submission.file.name|cut:'static/submissions/' }}</p>
+          </div>
         {% endif %}
-      {% empty %}
-        <p>У вас немає завдань.</p>
-      {% endfor %}
+      {% else %}
+        <p>Завдання не знайдено або сталася помилка.</p>
+      {% endif %}
     </main>
   </body>
 </html>
