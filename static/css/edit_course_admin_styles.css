@@ -259,3 +259,8 @@ body {
     transition: background 0.3s ease;
     text-decoration: none;
 }
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
+}

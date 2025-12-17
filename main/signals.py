@@ -7,10 +7,13 @@ logger = logging.getLogger("signals")
 
 
 @receiver(post_save, sender=Submission)
-def book_saved(sender, instance, created, **kwargs):
+def file_saved(sender, instance, created, **kwargs):
     if created:
         message = f"Студент {instance.student} надіслав файл: {instance.file}"
         message_for_log = f"Student {instance.student} sent file: {instance.file}"
+    else:
+        message = f"Для студента {instance.student} виставили оцінку до файлу: {instance.file}"
+        message_for_log = f"For student {instance.student} was sent a grade to file: {instance.file}"
 
     logger.info(message_for_log)
     print(f"[SIGNAL] {message}")

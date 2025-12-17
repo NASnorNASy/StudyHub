@@ -253,3 +253,8 @@ body {
     gap: 16px;
     justify-content: space-evenly;
 }
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
+}

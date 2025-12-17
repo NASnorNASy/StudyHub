@@ -76,29 +76,37 @@
 
             <p class="course-description">{{ course.description }}</p>
 
-            <button class="enroll-btn">
+            {% if user not in course.students.all %}
               <div class="enroll-icon">
-                <i class="fa-solid fa-user-plus"></i>
-              </div>Записатися
-            </button>
+                <form method="post" action="{% url 'join-course' course.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="enroll-btn"><i class="fa-solid fa-user-plus"></i> Записатися</button>
+                </form>
+              </div>
+            {% else %}
+              <div class="badge">
+                <i class="fas fa-check-circle"></i>
+                <div>Ви зареєстровані</div>
+              </div>
+            {% endif %}
           </div>
         {% endfor %}
-        {% if courses.paginator.num_pages > 1 %}
-          <div class="pagination-container">
-            <span class="step-links">
-              {% if courses.has_previous %}
-                <a href="?page={{ courses.previous_page_number }}" class="btn-pag">Назад &laquo;</a>
-              {% endif %}
-
-              <span class="current">Сторінка {{ courses.number }} із {{ courses.paginator.num_pages }}</span>
-
-              {% if courses.has_next %}
-                <a href="?page={{ courses.next_page_number }}" class="btn-pag">Вперед &raquo;</a>
-              {% endif %}
-            </span>
-          </div>
-        {% endif %}
       </div>
+      {% if courses.paginator.num_pages > 1 %}
+        <div class="pagination-container">
+          <span class="step-links">
+            {% if courses.has_previous %}
+              <a href="?page={{ courses.previous_page_number }}" class="btn-pag"><i class="fas fa-arrow-left" aria-hidden="true"></i></a>
+            {% endif %}
+
+            <span class="current">{{ courses.number }} | {{ courses.paginator.num_pages }}</span>
+
+            {% if courses.has_next %}
+              <a href="?page={{ courses.next_page_number }}" class="btn-pag"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
     </main>
   </body>
 </html>

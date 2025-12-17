@@ -63,84 +63,75 @@
       <div class="main-header">
         <h1 class="page-title">Мої курси</h1>
       </div>
+      <div class="courses-container">
+        {% if courses %}
+          {% for course in courses %}
+            <div class="course-card">
+              <div class="course-info">
+                <h2 class="course-title">{{ course.title }}</h2>
+                <div class="course-teacher">
+                  <i class="fas fa-user-tie"></i>
+                  <span>Викладач: {{ course.teacher.first_name }} {{ course.teacher.last_name }}</span>
+                </div>
+                <p class="course-description">{{ course.description }}</p>
+                <div class="badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Ви зареєстровані</span>
+                </div>
+              </div>
+              <div class="join-btn">
+                <a href="{% url 'course-view-student' course.id %}">
+                <button class="course-btn">Відкрити курс <i class="fa fa-arrow-right"></i></button>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Ви ще не доєдналися до жодного курсу.</p>
+        {% endif %}
+      </div>
+      {% comment %}
+      <div class="progress-container">
+        <div class="progress-header">
+          <div class="progress-title">
+            <i class="fas fa-chart-line"></i>
+            <span>Прогрес курсу</span>
+          </div>
+          <div class="progress-percentage">10%</div>
+        </div>
 
-      {% for my_course in my_courses %}
-        {% comment %} <div class="courses-container">
-          <div class="course-card">
-            <div class="course-info">
-              <h2 class="course-title">Основи програмування на Python</h2>
-              <div class="course-teacher">
-                <i class="fas fa-user-tie"></i>
-                <span>Викладач: Андрій Шевченко</span>
-              </div>
-              <p class="course-description">Навчіться програмувати з нуля за допомогою Python. Основи синтаксису, структури даних та розв'язання практичних завдань.</p>
-              <div class="badge">
-                <i class="fas fa-check-circle"></i>
-                <span>Ви зареєстровані ✓</span>
-              </div>
+        <p class="progress-text">Пройдено курсу</p>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-box stat-completed">
+            <div class="stat-number">1</div>
+            <div class="stat-label">
+              <i class="fas fa-check-circle"></i>
+              <span>Виконано</span>
             </div>
           </div>
 
-          <div class="course-card">
-            <div class="course-info">
-              <h2 class="course-title">Веб-розробка з React</h2>
-              <div class="course-teacher">
-                <i class="fas fa-user-tie"></i>
-                <span>Викладач: Олена Коваленко</span>
-              </div>
-              <p class="course-description">Створюйте сучасні веб-додатки за допомогою React та TypeScript. Робота з компонентами, станом та API.</p>
-              <div class="badge">
-                <i class="fas fa-check-circle"></i>
-                <span>Ви зареєстровані ✓</span>
-              </div>
+          <div class="stat-box stat-remaining">
+            <div class="stat-number">1</div>
+            <div class="stat-label">
+              <i class="fas fa-clock"></i>
+              <span>Залишилось</span>
+            </div>
+          </div>
+
+          <div class="stat-box stat-average">
+            <div class="stat-number">95</div>
+            <div class="stat-label">
+              <i class="fas fa-star"></i>
+              <span>Середній бал</span>
             </div>
           </div>
         </div>
-
-        <div class="progress-container">
-          <div class="progress-header">
-            <div class="progress-title">
-              <i class="fas fa-chart-line"></i>
-              <span>Прогрес курсу</span>
-            </div>
-            <div class="progress-percentage">10%</div>
-          </div>
-
-          <p class="progress-text">Пройдено курсу</p>
-
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-
-          <div class="stats-container">
-            <div class="stat-box stat-completed">
-              <div class="stat-number">1</div>
-              <div class="stat-label">
-                <i class="fas fa-check-circle"></i>
-                <span>Виконано</span>
-              </div>
-            </div>
-
-            <div class="stat-box stat-remaining">
-              <div class="stat-number">1</div>
-              <div class="stat-label">
-                <i class="fas fa-clock"></i>
-                <span>Залишилось</span>
-              </div>
-            </div>
-
-            <div class="stat-box stat-average">
-              <div class="stat-number">95</div>
-              <div class="stat-label">
-                <i class="fas fa-star"></i>
-                <span>Середній бал</span>
-              </div>
-            </div>
-          </div>
-        </div> {% endcomment %}
-      {% empty %}
-        <p>Ви ще не доєдналися до жодного курсу.</p>
-      {% endfor %}
+      </div> {% endcomment %}
     </main>
   </body>
 </html>

@@ -282,3 +282,8 @@ body {
 .delete-btn {
     color: rgb(225, 0, 0);
 }
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
+}

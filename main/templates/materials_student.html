@@ -70,31 +70,37 @@
         </form>
       </div>
 
-      <div class="materials-list">
-        {% for material in materials_student %}
-          <div class="material-card">
-            <div class="card-header">
-              <div class="card-title-section">
-                <div>
-                  <div class="material-title">{{ material.title }}</div>
-                  <div class="material-subtitle">Курс: {{ material.course }}</div>
+      <div class="materials-container">
+        {% if materials_student %}
+          {% for material in materials_student %}
+            <div class="material-card">
+              <div class="card-header">
+                <div class="material-info">
+                  <div class="material-title-container">
+                    <h3 class="material-title">{{ material.title }}</h3>
+                    <p class="material-subtitle">Курс: {{ material.course }}</p>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <a href="{% url 'comments-student' material.id %}" class="comments-btn"><i class="fas fa-comment"></i></a>
                 </div>
               </div>
-              <div class="material-count">
-                <a href="{% url 'comments-student' material.id %}">
-                <i class="fas fa-comment"></i>
-                </a>
-              </div>
+
+              <p class="material-description">{{ material.description }}</p>
+
+              <a href="{{ material.file.url }}" class="file-container" download>
+                <div>
+                  <div class="file-info">
+                    <i class="fas fa-download"></i>
+                    <span class="file-name">{{ material.file.name|cut:'materials/' }}</span>
+                  </div>
+                </div>
+              </a>
             </div>
-            <p class="material-description">{{ material.description }}</p>
-            <a href="{{ material.file.url }}" class="material-link" download>
-              <i class="fas fa-download"></i>
-              {{ material.file.name|cut:'materials/' }}
-            </a>
-          </div>
-        {% empty %}
+          {% endfor %}
+        {% else %}
           <p>У вас ще немає матеріалів.</p>
-        {% endfor %}
+        {% endif %}
       </div>
     </main>
   </body>

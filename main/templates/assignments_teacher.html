@@ -76,14 +76,14 @@
                 <div class="task-footer">
                   <div class="task-deadline">
                     <i class="far fa-calendar"></i>
-                    <span>Дедлайн: {{ assignment.deadline }}</span>
+                    <span>Дедлайн: {{ assignment.deadline|date:'d.m.Y, H:i' }}</span>
                   </div>
                 </div>
               </div>
             </div>
           {% endif %}
         {% empty %}
-          <p>У вас немає створених завдань.</p>
+          <p class="nothing">У вас немає створених завдань.</p>
         {% endfor %}
       </div>
     </main>

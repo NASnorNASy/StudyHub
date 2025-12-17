@@ -59,8 +59,8 @@
       <div class="main-header">
         <h1 class="page-title">Роботи студентів</h1>
       </div>
-      {% for submission in submissions %}
-        <div class="works-list">
+      <div class="works-list">
+        {% for submission in submissions %}
           <form method="POST">
             {% csrf_token %}
 
@@ -69,8 +69,10 @@
             <div class="work-card">
               <div class="work-details">
                 <h3 class="work-title">{{ submission.assignment.title }}</h3>
-                <p class="work-course">{{ submission.assignment.course.title }}</p>
-                <p class="work-student">{{ submission.student.first_name }} {{ submission.student.last_name }}</p>
+                <p class="work-course">
+                  {{ submission.assignment.course.title }} <span class="work-student">• {{ submission.student.first_name }} {{ submission.student.last_name }}</span>
+                </p>
+
                 <div class="work-meta">
                   <div class="work-meta-item">
                     <i class="far fa-file"></i>
@@ -79,9 +81,10 @@
                 </div>
               </div>
 
-              <div class="work-grade">{{ submission.grade|default:''|floatformat }}</div>
-              {% if error %}
-                <div class="alert alert-danger">{{ error }}</div>
+              <div class="work-grade">{{ submission.grade|default:'0'|floatformat }}</div>
+
+              {% if error_data.submission_id == submission.id %}
+                <div class="alert alert-danger">{{ error_data.message }}</div>
               {% endif %}
 
               <div class="work-actions">
@@ -91,7 +94,7 @@
                 </a>
 
                 <div class="grade-input">
-                  <input type="number" class="grade-input-field" name="grade" placeholder="{{ submission.grade|default:'-'|floatformat }}" maxlength="3" />
+                  <input type="number" class="grade-input-field" name="grade" value="{{ submission.grade|default:'' }}" min="0" max="100" placeholder="{{ submission.grade|default:'-'|floatformat }}" />
 
                   <button type="submit" class="btn btn-secondary">
                     <i class="fas fa-edit"></i>
@@ -101,8 +104,8 @@
               </div>
             </div>
           </form>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </main>
   </body>
 </html>

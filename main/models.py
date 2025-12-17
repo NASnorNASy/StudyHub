@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Course(models.Model):
@@ -10,6 +11,12 @@ class Course(models.Model):
         on_delete=models.CASCADE,
         limit_choices_to={"groups__name": "Викладач"},
         verbose_name="Викладач",
+    )
+    
+    students = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="courses",
+        blank=True
     )
 
     def __str__(self):

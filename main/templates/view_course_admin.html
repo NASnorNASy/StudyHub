@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Перегляд курсу</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/view_course_admin_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="user-role">Адміністратор</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-admin' %}" class="nav-item active">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Курси</span>
+        </a>
+        <a href="{% url 'users-admin' %}" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Користувачі</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Курс: {{ course.title }}</h1>
+      </div>
+
+      <section class="materials-table">
+        <div class="table-header">
+          <div>Назва матеріалу</div>
+          <div>Файл</div>
+          <div>Дії</div>
+        </div>
+        {% if materials %}
+          {% for material in materials %}
+            <div class="table-row">
+              <div class="material-info">
+                <div class="material-title">{{ material.title }}</div>
+                <div class="material-description">{{ material.description|default:'Опис відсутній' }}</div>
+              </div>
+              <div class="file">
+                Файл: <span class="file-text">{{ material.file|cut:'materials/' }}</span>
+              </div>
+              <div class="actions">
+                <a href="{% url 'delete-materials-admin' material.id %}" class="action-btn delete-btn" title="Видалити матеріал"><i class="fas fa-trash-alt"></i></a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Матеріали відсутні</p>
+        {% endif %}
+      </section>
+
+      <section class="assignments-table">
+        <div class="table-header">
+          <div>Назва завдання</div>
+          <div>Дедлайн</div>
+          <div>Дії</div>
+        </div>
+        {% if assignments %}
+          {% for assignment in assignments %}
+            <div class="table-row">
+              <div class="assignment-info">
+                <div class="assignment-title">{{ assignment.title }}</div>
+                <div class="assignment-description">{{ assignment.description|default:'Опис відсутній' }}</div>
+              </div>
+              <div class="deadline">
+                Дедлайн: <span class="deadline-text">{{ assignment.deadline }}</span>
+              </div>
+              <div class="actions">
+                <a href="{% url 'delete-assignments-admin' assignment.id %}" class="action-btn delete-btn" title="Видалити завдання"><i class="fas fa-trash-alt"></i></a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Завдання відсутні</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

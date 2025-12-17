@@ -9,6 +9,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Avg
 
 
 def login_view(request):
@@ -102,7 +103,66 @@ def is_student(user):
 @login_required(login_url="login")
 @user_passes_test(is_student, login_url="login")
 def home_student(request):
-    return render(request, "home_student.html")
+    courses = request.user.courses.all()
+    return render(request, "home_student.html", {"courses": courses})
+
+
+@login_required(login_url="login")
+@user_passes_test(is_student, login_url="login")
+def course_view_student(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    assignments = Assignment.objects.filter(course=course).order_by("deadline")
+    total_tasks = assignments.count()
+
+    submissions = Submission.objects.filter(
+        student=request.user, assignment__course=course
+    ).select_related("assignment")
+
+    submitted_tasks = submissions.count()
+    graded_tasks = submissions.filter(grade__isnull=False).count()
+
+    progress_percent = 0
+    if total_tasks > 0:
+        progress_percent = int((submitted_tasks / total_tasks) * 100)
+
+    graded_submissions = submissions.filter(grade__isnull=False)
+    average_grade = graded_submissions.aggregate(avg=Avg("grade"))["avg"] or 0
+
+    assignment_data = []
+    for assignment in assignments:
+        submission = submissions.filter(assignment=assignment).first()
+        assignment_data.append(
+            {
+                "assignment": assignment,
+                "submission": submission,
+                "is_submitted": submission is not None,
+                "is_graded": submission.grade is not None if submission else False,
+                "grade": submission.grade if submission else None,
+            }
+        )
+
+    context = {
+        "course": course,
+        "progress_percent": progress_percent,
+        "submitted_tasks": submitted_tasks,
+        "graded_tasks": graded_tasks,
+        "total_tasks": total_tasks,
+        "average_grade": round(average_grade, 1),
+        "assignment_data": assignment_data,
+    }
+
+    return render(request, "course_view_student.html", context)
+
+
+@login_required(login_url="login")
+@user_passes_test(is_student, login_url="login")
+def join_course(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+
+    course.students.add(request.user)
+
+    return redirect("home-student")
 
 
 @login_required(login_url="login")
@@ -126,7 +186,9 @@ def all_courses_student(request):
 @login_required(login_url="login")
 @user_passes_test(is_student, login_url="login")
 def materials_student(request):
-    materials_student = Material.objects.all()
+    materials_student = Material.objects.filter(
+        course__students=request.user
+    ).select_related("course")
 
     search_materials = request.GET.get("search", "").strip().lower()
     if search_materials:
@@ -164,7 +226,9 @@ def comments_student(request, material_id):
 def assignments_student(request):
     user = request.user
 
-    all_assignments = Assignment.objects.all().order_by("deadline")
+    all_assignments = Assignment.objects.filter(
+        course__students=request.user
+    ).select_related("course")
 
     assignments_list_for_template = []
 
@@ -222,7 +286,9 @@ def assignments_student_view(request, assignment_id):
 def my_works_student(request):
     user = request.user
 
-    all_assignments = Assignment.objects.all().order_by("deadline")
+    all_assignments = Assignment.objects.filter(
+        course__students=request.user
+    ).select_related("course")
 
     assignments_list_for_template = []
 
@@ -388,8 +454,7 @@ def create_assignments_teacher(request):
 @login_required(login_url="login")
 @user_passes_test(is_teacher, login_url="login")
 def students_works_teacher(request):
-
-    error = ""
+    error_data = {"message": "", "submission_id": None}
 
     if request.method == "POST":
         submission_id = request.POST.get("submission_id")
@@ -398,13 +463,20 @@ def students_works_teacher(request):
         if submission_id and new_grade_str:
             submission = get_object_or_404(Submission, id=submission_id)
 
-            new_grade = int(new_grade_str)
-
-            if not (0 <= new_grade <= 100):
-                error = "Оцінка повинна бути в діапазоні від 0 до 100."
+            try:
+                new_grade = int(new_grade_str)
+            except ValueError:
+                error_data["message"] = "Оцінка повинна бути числом."
+                error_data["submission_id"] = submission_id
             else:
-                submission.grade = new_grade
-                submission.save()
+                if not (0 <= new_grade <= 100):
+                    error_data["message"] = (
+                        "Оцінка повинна бути в діапазоні від 0 до 100."
+                    )
+                    error_data["submission_id"] = submission_id
+                else:
+                    submission.grade = new_grade
+                    submission.save()
 
     submissions = (
         Submission.objects.filter(assignment__course__teacher=request.user)
@@ -415,7 +487,7 @@ def students_works_teacher(request):
     return render(
         request,
         "students_works_teacher.html",
-        {"submissions": submissions, "error": error},
+        {"submissions": submissions, "error_data": error_data},
     )
 
 
@@ -506,7 +578,47 @@ def create_course_admin(request):
 @user_passes_test(is_admin, login_url="login")
 def view_course_admin(request, course_id):
     course = Course.objects.get(id=course_id)
-    return render(request, "view_course_admin.html", {"course": course})
+
+    materials = Material.objects.filter(course=course)
+    assignments = Assignment.objects.filter(course=course)
+
+    return render(
+        request,
+        "view_course_admin.html",
+        {"course": course, "materials": materials, "assignments": assignments},
+    )
+
+
+@permission_required("main.delete_material", raise_exception=True, login_url="login")
+@login_required(login_url="login")
+@user_passes_test(is_admin, login_url="login")
+def delete_materials_admin(request, material_id):
+    material = Material.objects.get(id=material_id)
+    if request.method == "POST":
+        material.delete()
+        return redirect("home-admin")
+
+    return render(
+        request,
+        "delete_materials_admin.html",
+        {"material": material},
+    )
+
+
+@permission_required("main.delete_assignment", raise_exception=True, login_url="login")
+@login_required(login_url="login")
+@user_passes_test(is_admin, login_url="login")
+def delete_assignments_admin(request, assignment_id):
+    assignment = Assignment.objects.get(id=assignment_id)
+    if request.method == "POST":
+        assignment.delete()
+        return redirect("home-admin")
+
+    return render(
+        request,
+        "delete_assignments_admin.html",
+        {"assignment": assignment},
+    )
 
 
 @permission_required("main.change_course", raise_exception=True, login_url="login")

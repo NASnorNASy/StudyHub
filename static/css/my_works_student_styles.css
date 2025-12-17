@@ -300,21 +300,23 @@ body {
 
 .download-btn {
     background-color: #673ab7;
-    /* Фіолетовий колір кнопки */
 }
 
 .submit-btn {
     background-color: #4CAF50;
-    /* Зелений колір для кнопки здачі */
 }
 
 .btn:hover {
     opacity: 0.9;
 }
 
-/* Стиль для повідомлення, якщо робіт немає */
 .main-content p {
     color: #6c757d;
     text-align: center;
     padding-top: 20px;
+}
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }

@@ -239,17 +239,15 @@ body {
 }
 
 .material-card {
-    background-color: var(--gray-light);
-    border-radius: var(--radius-lg);
+    background-color: var(--white);
+    border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 4px 12px var(--shadow-strong);
-    transition: var(--transition);
-    border: 1px solid rgb(220, 220, 220);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.material-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+hr {
+    margin-top: 24px;
+    border: 1px solid #e1e1e1;
 }
 
 .card-header {
@@ -300,28 +298,11 @@ body {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .comments-btn:hover {
     background-color: rgba(108, 77, 255, 0.2);
-}
-
-.delete-btn {
-    background: transparent;
-    border: none;
-    color: #EF4444;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.delete-btn:hover {
-    background-color: rgba(239, 68, 68, 0.1);
 }
 
 .material-description {
@@ -335,16 +316,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(108, 77, 255, 0.08);
+    background-color: var(--primary-purple);
     border-radius: 50px;
     padding: 12px 20px;
     transition: var(--transition);
     text-decoration: none;
-    color: var(--black);
+    color: var(--white);
+    width: fit-content;
 }
 
 .file-container:hover {
-    background-color: rgba(108, 77, 255, 0.12);
+    background-color: #420dbdd7;
 }
 
 .file-info {
@@ -362,39 +344,100 @@ body {
     font-size: 15px;
 }
 
-.download-btn {
-    background-color: var(--primary-purple);
-    color: var(--text-white);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
+.comment-card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.download-btn:hover {
-    background-color: var(--primary-purple-light);
-    transform: scale(1.05);
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .comment {
-    padding: 12px;
-    border-radius: 12px;
-    background: #f7f7fb;
-    margin-bottom: 10px;
+    background-color: #e9e1ee8b;
+    border-radius: var(--radius-lg);
+    padding: 20px 21px;
+    border: 1px solid #cec6d38b;
+
+}
+
+.textarea-chat {
+    resize: none;
+    border-radius: 60px;
+    border: 1px solid #8800ff;
+    background-color: var(--bg-gradient);
+    width: 100%;
+    margin-top: 24px;
+    padding: 18px 15px;
+    height: 59px;
+    font-size: 16px;
+}
+
+.user-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.comment-date {
+    color: var(--gray-dark);
+    font-size: 14px;
+}
+
+.users-role {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.role-Студент {
+    background-color: #cfcfcf;
+    color: rgb(82, 82, 82);
+    border-radius: var(--radius-lg);
+    padding: 6px 8px;
+    font-size: 12px;
+    align-self: center;
+}
+
+.role-Викладач {
+    background-color: #e8d6f8;
+    color: #8800ff;
+    border-radius: var(--radius-lg);
+    padding: 6px 8px;
+    font-size: 12px;
+    align-self: center;
+}
+
+.text-user {
+    font-weight: 500;
+}
+
+.text-message {
+    color: var(--gray-dark);
+}
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }
 
 .comment-form {
     display: flex;
+    flex-direction: row;
     gap: 10px;
 }
 
-.comment-form textarea {
-    flex: 1;
-    border-radius: 12px;
-    padding: 10px;
+.send-btn {
+    background-color: #8800ff;
+    border-radius: 50px;
+    height: 50px;
+    align-self: center;
+    margin-top: 24px;
+    padding: 15px 15px;
+    border: none;
+    color: white;
+    font-size: 22px;
+}
+
+.send-btn:hover {
+    background-color: #7900e4;
 }

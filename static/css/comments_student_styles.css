@@ -145,7 +145,6 @@ body {
     border-radius: var(--radius-md);
     background: none;
     border: none;
-    cursor: pointer;
     font-size: 16px;
 }
 
@@ -175,26 +174,30 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .search-container {
     position: relative;
-    width: 300px;
 }
 
 .search-input {
-    width: 100%;
-    padding: 12px 20px 12px 45px;
-    border: 1px solid #e0e0e0;
-    border-radius: 30px;
+    padding: 14px 20px 14px 48px;
+    border-radius: 50px;
+    border: 1px solid #E5E7EB;
+    width: 280px;
     font-size: 16px;
-    background-color: #f9f9f9;
-    transition: all 0.3s;
+    background-color: var(--text-white);
+    transition: var(--transition);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #7b1fa2;
-    background-color: white;
-    box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 3px rgba(108, 77, 255, 0.1);
 }
 
 .search-icon {
@@ -207,23 +210,44 @@ body {
     border: none;
 }
 
-.materials-list {
+
+.add-btn {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+    border: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.add-btn:hover {
+    background-color: var(--primary-purple-light);
+    box-shadow: 0 4px 12px rgba(108, 77, 255, 0.3);
+}
+
+.materials-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
 .material-card {
-    background-color: white;
-    border-radius: 12px;
+    background-color: var(--white);
+    border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.material-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+hr {
+    margin-top: 24px;
+    border: 1px solid #e1e1e1;
 }
 
 .card-header {
@@ -233,74 +257,187 @@ body {
     margin-bottom: 16px;
 }
 
-.card-title-section {
+.material-info {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.material-title-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .material-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
 .material-subtitle {
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
 }
 
-.material-count {
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-weight: 600;
-    color: #333;
-    font-size: 15px;
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comments-btn {
+    position: relative;
+    background-color: rgba(108, 77, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--primary-purple);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.comments-btn:hover {
+    background-color: rgba(108, 77, 255, 0.2);
 }
 
 .material-description {
-    font-size: 15px;
-    color: #555;
-    margin-bottom: 20px;
+    color: var(--text-dark);
     line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 15px;
 }
 
-.material-link {
+.file-container {
     display: flex;
     align-items: center;
-    color: #7b1fa2;
+    justify-content: space-between;
+    background-color: var(--primary-purple);
+    border-radius: 50px;
+    padding: 12px 20px;
+    transition: var(--transition);
     text-decoration: none;
+    color: var(--white);
+    width: fit-content;
+}
+
+.file-container:hover {
+    background-color: #420dbdd7;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.file-icon {
+    color: var(--primary-purple);
+}
+
+.file-name {
     font-weight: 500;
     font-size: 15px;
-    transition: color 0.3s ease;
 }
 
-.material-link:hover {
-    color: #4a148c;
+.comment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-.material-link i {
-    margin-right: 8px;
-}
 .comment {
-  padding: 12px;
-  border-radius: 12px;
-  background: #f7f7fb;
-  margin-bottom: 10px;
+    background-color: #e9e1ee8b;
+    border-radius: var(--radius-lg);
+    padding: 20px 21px;
+    border: 1px solid #cec6d38b;
+
+}
+
+.textarea-chat {
+    resize: none;
+    border-radius: 60px;
+    border: 1px solid #8800ff;
+    background-color: var(--bg-gradient);
+    width: 100%;
+    margin-top: 24px;
+    padding: 18px 15px;
+    height: 59px;
+    font-size: 16px;
+}
+
+.user-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.comment-date {
+    color: var(--gray-dark);
+    font-size: 14px;
+}
+
+.users-role {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.role-Студент {
+    background-color: #cfcfcf;
+    color: rgb(82, 82, 82);
+    border-radius: var(--radius-lg);
+    padding: 6px 8px;
+    font-size: 12px;
+    align-self: center;
+}
+
+.role-Викладач {
+    background-color: #e8d6f8;
+    color: #8800ff;
+    border-radius: var(--radius-lg);
+    padding: 6px 8px;
+    font-size: 12px;
+    align-self: center;
+}
+
+.text-user {
+    font-weight: 500;
+}
+
+.text-message {
+    color: var(--gray-dark);
+}
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }
 
 .comment-form {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
-.comment-form textarea {
-  flex: 1;
-  border-radius: 12px;
-  padding: 10px;
+.send-btn {
+    background-color: #8800ff;
+    border-radius: 50px;
+    height: 50px;
+    align-self: center;
+    margin-top: 24px;
+    padding: 15px 15px;
+    border: none;
+    color: white;
+    font-size: 22px;
+}
+
+.send-btn:hover {
+    background-color: #7900e4;
 }

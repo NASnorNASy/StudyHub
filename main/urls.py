@@ -6,9 +6,19 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("register/", views.register_view, name="register"),
     path("home-student/", views.home_student, name="home-student"),
+    path(
+        "course-view-student/<int:course_id>/",
+        views.course_view_student,
+        name="course-view-student",
+    ),
+    path("courses-join/<int:course_id>/", views.join_course, name="join-course"),
     path("all-courses-student/", views.all_courses_student, name="all-courses-student"),
     path("materials-student/", views.materials_student, name="materials-student"),
-    path("comments-student/<int:material_id>/", views.comments_student, name="comments-student"),
+    path(
+        "comments-student/<int:material_id>/",
+        views.comments_student,
+        name="comments-student",
+    ),
     path("assignments-student/", views.assignments_student, name="assignments-student"),
     path(
         "assignments-student-view/<int:assignment_id>/",
@@ -28,7 +38,11 @@ urlpatterns = [
         views.create_materials_teacher,
         name="create-materials-teacher",
     ),
-    path("comments-teacher/<int:material_id>/", views.comments_teacher, name="comments-teacher"),
+    path(
+        "comments-teacher/<int:material_id>/",
+        views.comments_teacher,
+        name="comments-teacher",
+    ),
     path("assignments-teacher/", views.assignments_teacher, name="assignments-teacher"),
     path(
         "create-assignments-teacher/",
@@ -47,6 +61,8 @@ urlpatterns = [
         views.view_course_admin,
         name="view-course-admin",
     ),
+    path("delete-materials-admin/<int:material_id>/", views.delete_materials_admin, name="delete-materials-admin"),
+    path("delete-assignments-admin/<int:assignment_id>/", views.delete_assignments_admin, name="delete-assignments-admin"),
     path(
         "edit-course-admin/<int:course_id>/",
         views.edit_course_admin,

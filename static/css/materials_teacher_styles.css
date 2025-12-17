@@ -213,17 +213,17 @@ body {
 
 .add-btn {
     background-color: var(--primary-purple);
-    color: var(--text-white);
+    color: var(--white);
     border: none;
-    padding: 14px 24px;
     border-radius: 50px;
-    font-weight: 600;
+    padding: 14px 28px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: var(--transition);
+    transition: background-color 0.3s ease;
     text-decoration: none;
 }
 
@@ -239,17 +239,16 @@ body {
 }
 
 .material-card {
-    background-color: var(--gray-light);
-    border-radius: var(--radius-lg);
+    background-color: var(--white);
+    border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 4px 12px var(--shadow-strong);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
-    border: 1px solid rgb(220, 220, 220);
 }
 
 .material-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -300,30 +299,12 @@ body {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .comments-btn:hover {
     background-color: rgba(108, 77, 255, 0.2);
 }
-
-.delete-btn {
-    background: transparent;
-    border: none;
-    color: #EF4444;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.delete-btn:hover {
-    background-color: rgba(239, 68, 68, 0.1);
-}
-
 .material-description {
     color: var(--text-dark);
     line-height: 1.5;
@@ -335,16 +316,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(108, 77, 255, 0.08);
+    background-color:  var(--primary-purple);
     border-radius: 50px;
     padding: 12px 20px;
     transition: var(--transition);
     text-decoration: none;
-    color: var(--black);
+    color: var(--white);
+    width: fit-content;
 }
 
 .file-container:hover {
-    background-color: rgba(108, 77, 255, 0.12);
+    background-color: #420dbdd7;
 }
 
 .file-info {
@@ -362,21 +344,7 @@ body {
     font-size: 15px;
 }
 
-.download-btn {
-    background-color: var(--primary-purple);
-    color: var(--text-white);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.download-btn:hover {
-    background-color: var(--primary-purple-light);
-    transform: scale(1.05);
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }

@@ -154,9 +154,12 @@ body {
 
 .main-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     margin-left: var(--sidebar-width);
     padding: 48px;
     max-width: 1200px;
+    gap: 24px;
 }
 
 .page-title {
@@ -174,127 +177,116 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-.users-table-container {
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.2fr;
+    padding: 16px 24px;
     background-color: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-
-.users-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.users-table th {
-    text-align: left;
-    padding: 18px 20px;
     font-weight: 600;
-    color: var(--text-light);
-    border-bottom: 1px solid var(--border-color);
-    background-color: #ffffff;
+    color: var(--text-medium);
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.2fr;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
     border-bottom: 1px solid rgb(206, 206, 206);
 }
 
-.users-table td {
-    padding: 18px 20px;
-    border-bottom: 1px solid rgb(233, 233, 233);
+.materials-table {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
 }
 
-.users-table tbody tr:last-child td {
+.assignments-table {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.table-row:last-child {
     border-bottom: none;
 }
 
-.user-name-cell {
-    font-weight: 500;
+.material-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.user-email-cell {
-    color: var(--gray-dark);
+.assignment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.role-tag {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
+
+.material-title {
+    font-weight: 600;
+    color: var(--text-dark);
 }
 
-.role-Студент {
-    background-color: rgba(157, 196, 255, 0.752);
-    color: rgb(21, 58, 114);
+.assignment-title {
+    font-weight: 600;
+    color: var(--text-dark);
 }
 
-.role-Викладач {
-    background-color: rgba(213, 179, 255, 0.625);
-    color: rgb(86, 32, 151);
+.material-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    line-height: 1.4;
 }
 
-.role-Адмін {
-    background-color: rgba(255, 156, 156, 0.7);
-    color: rgb(148, 30, 30);
+.assignment-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    line-height: 1.4;
 }
 
-.actions-cell {
+.actions {
     display: flex;
     align-items: center;
-}
-
-
-.actions-cell p {
-    padding-bottom: 6px;
-    padding-top: 6px;
 }
 
 .action-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.delete-btn {
+    color: rgb(225, 0, 0);
+}
+
+.file {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-right: 8px;
-    padding-bottom: 6px;
-    padding-top: 6px;
-    text-decoration: none;
+    gap: 10px;
 }
 
-.action-btn-edit {
-    text-decoration: none;
-    color: var(--blue);
+.file-text {
+    font-weight: 600;
 }
 
-.action-btn-delete {
-    text-decoration: none;
-    color: rgb(206, 0, 0);
+.deadline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-
-.action-btn:hover {
-    background-color: #f3f4f6;
-}
-
-.edit-btn:hover {
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-.delete-btn:hover {
-    color: var(--admin-tag);
-}
-
-.current-user {
-    font-size: 12px;
-    background-color: var(--accent-color);
-    color: rgb(43, 36, 36);
-    padding: 4px 10px;
-    border-radius: 12px;
-    margin-left: 10px;
+.deadline-text {
+    font-weight: 600;
 }
 
 .nothing {

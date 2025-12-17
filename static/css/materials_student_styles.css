@@ -145,7 +145,6 @@ body {
     border-radius: var(--radius-md);
     background: none;
     border: none;
-    cursor: pointer;
     font-size: 16px;
 }
 
@@ -175,26 +174,30 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .search-container {
     position: relative;
-    width: 300px;
 }
 
 .search-input {
-    width: 100%;
-    padding: 12px 20px 12px 45px;
-    border: 1px solid #e0e0e0;
-    border-radius: 30px;
+    padding: 14px 20px 14px 48px;
+    border-radius: 50px;
+    border: 1px solid #E5E7EB;
+    width: 280px;
     font-size: 16px;
-    background-color: #f9f9f9;
-    transition: all 0.3s;
+    background-color: var(--text-white);
+    transition: var(--transition);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #7b1fa2;
-    background-color: white;
-    box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 3px rgba(108, 77, 255, 0.1);
 }
 
 .search-icon {
@@ -207,23 +210,45 @@ body {
     border: none;
 }
 
-.materials-list {
+
+.add-btn {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.add-btn:hover {
+    background-color: var(--primary-purple-light);
+    box-shadow: 0 4px 12px rgba(108, 77, 255, 0.3);
+}
+
+.materials-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
 .material-card {
-    background-color: white;
-    border-radius: 12px;
+    background-color: var(--white);
+    border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
 }
 
 .material-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -233,57 +258,93 @@ body {
     margin-bottom: 16px;
 }
 
-.card-title-section {
+.material-info {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.material-title-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .material-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
 .material-subtitle {
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
 }
 
-.material-count {
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-weight: 600;
-    color: #333;
-    font-size: 15px;
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comments-btn {
+    position: relative;
+    background-color: rgba(108, 77, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--primary-purple);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
+    transition: var(--transition);
+    text-decoration: none;
 }
 
+.comments-btn:hover {
+    background-color: rgba(108, 77, 255, 0.2);
+}
 .material-description {
-    font-size: 15px;
-    color: #555;
-    margin-bottom: 20px;
+    color: var(--text-dark);
     line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 15px;
 }
 
-.material-link {
+.file-container {
     display: flex;
     align-items: center;
-    color: #7b1fa2;
+    justify-content: space-between;
+    background-color:  var(--primary-purple);
+    border-radius: 50px;
+    padding: 12px 20px;
+    transition: var(--transition);
     text-decoration: none;
+    color: var(--white);
+    width: fit-content;
+}
+
+.file-container:hover {
+    background-color: #420dbdd7;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.file-icon {
+    color: var(--primary-purple);
+}
+
+.file-name {
     font-weight: 500;
     font-size: 15px;
-    transition: color 0.3s ease;
 }
 
-.material-link:hover {
-    color: #4a148c;
-}
-
-.material-link i {
-    margin-right: 8px;
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }

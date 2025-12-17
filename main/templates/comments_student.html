@@ -63,31 +63,54 @@
       <div class="main-header">
         <h1 class="page-title">Коментарі</h1>
       </div>
-      <p>{{ material.course }}</p>
-      <h3>{{ material.title }}</h3>
-      <p>{{ material.file|cut:'materials/' }}</p>
-      <p>{{ material.description }}</p>
+      <div class="material-card">
+        <div class="card-header">
+          <div class="material-info">
+            <div class="material-title-container">
+              <h3 class="material-title">{{ material.title }}</h3>
+              <p class="material-subtitle">Курс: {{ material.course }}</p>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="{% url 'materials-student' %}" class="comments-btn"><i class="fas fa-comment"></i></a>
+          </div>
+        </div>
+
+        <p class="material-description">{{ material.description }}</p>
+
+        <a href="{{ material.file.url }}" class="file-container" download>
+          <div>
+            <div class="file-info">
+              <i class="fas fa-download"></i>
+              <span class="file-name">{{ material.file.name|cut:'materials/' }}</span>
+            </div>
+          </div>
+        </a>
+      </div>
       <hr />
       <section class="comments">
-        <h3>Коментарі</h3>
-
-        {% for comment in comments %}
-          <div class="comment">
-            <strong>{{ comment.author.first_name }} {{ comment.author.last_name }}</strong>
-            {% for group in comment.author.groups.all %}
-              <p>{{ group.name }}</p>
-            {% endfor %}
-            <span class="comment-date">{{ comment.created_at|date:'d.m.Y, H:i' }}</span>
-            <p>{{ comment.text }}</p>
-          </div>
-        {% empty %}
-          <p>Коментарів ще немає.</p>
-        {% endfor %}
-
+        <div class="comment-card">
+          {% for comment in comments %}
+            <div class="comment">
+              <div class="user-space">
+                <div class="users-role">
+                  <p class="text-user">{{ comment.author.first_name }} {{ comment.author.last_name }}</p>
+                  {% for group in comment.author.groups.all %}
+                    <p class="role-{{ comment.author.groups.all.0.name }}">{{ group.name }}</p>
+                  {% endfor %}
+                </div>
+                <span class="comment-date">{{ comment.created_at|date:'d.m.Y, H:i' }}</span>
+              </div>
+              <p class="text-message">{{ comment.text }}</p>
+            </div>
+          {% empty %}
+            <p class="nothing">Коментарів ще немає.</p>
+          {% endfor %}
+        </div>
         <form method="post" class="comment-form">
           {% csrf_token %}
-          <textarea name="text" rows="3" placeholder="Напишіть коментар або запитання..." required></textarea>
-          <button type="submit">➤</button>
+          <textarea name="text" rows="3" class="textarea-chat" placeholder="Напишіть коментар або запитання..." required></textarea>
+          <button class="send-btn" type="submit"><i class="fas fa-paper-plane"></i></button>
         </form>
       </section>
     </main>

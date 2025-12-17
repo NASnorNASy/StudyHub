@@ -234,6 +234,21 @@ body {
     border: 1px solid rgb(203, 203, 203);
 }
 
+.file-input::file-selector-button {
+    background-color: var(--primary-purple); 
+  color: white;
+  padding: 5px 10px; 
+  border: none; 
+  border-radius: 50px; 
+  cursor: pointer; 
+  font-size: 16px; 
+}
+.file-input::file-selector-button:hover {
+    background-color: rgba(56, 0, 116, 0.921); 
+    
+}
+
+
 .submit-btn {
     background-color: var(--primary-purple);
     color: white;
@@ -261,4 +276,9 @@ body {
     display: flex;
     gap: 16px;
     justify-content: space-evenly;
+}
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }

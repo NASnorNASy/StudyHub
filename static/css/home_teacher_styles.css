@@ -176,21 +176,23 @@ body {
 
 .create-course-btn {
     background-color: var(--primary-purple);
-    color: var(--black);
+    color: var(--white);
     border: none;
-    border-radius: 999px;
-    padding: 12px 24px;
-    font-weight: 600;
+    border-radius: 50px;
+    padding: 14px 28px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: var(--transition);
+    gap: 8px;
+    transition: background-color 0.3s ease;
     text-decoration: none;
 }
 
 .create-course-btn:hover {
     background-color: var(--primary-purple-light);
+    box-shadow: 0 4px 12px rgba(108, 77, 255, 0.3);
 }
 
 .create-course-btn i {
@@ -214,8 +216,8 @@ body {
 }
 
 .course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .course-title {
@@ -263,4 +265,9 @@ body {
     padding: 6px 12px;
     font-size: 14px;
     font-weight: 500;
+}
+
+.nothing {
+    text-align: center;
+    color: #5a5a5a;
 }

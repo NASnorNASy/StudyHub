@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мої курси</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/course_view_student_styles.css' %}" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="logo-text">StudyHub</div>
+      </div>
+
+      <div class="user-card">
+        <div class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+        <div class="user-role">Студент</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="{% url 'home-student' %}" class="nav-item active">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-text">Мої курси</span>
+        </a>
+        <a href="{% url 'all-courses-student' %}" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span class="nav-text">Всі курси</span>
+        </a>
+        <a href="{% url 'materials-student' %}" class="nav-item">
+          <i class="fas fa-folder-open"></i>
+          <span class="nav-text">Матеріали</span>
+        </a>
+        <a href="{% url 'assignments-student' %}" class="nav-item">
+          <i class="fas fa-tasks"></i>
+          <span class="nav-text">Завдання</span>
+        </a>
+        <a href="{% url 'my-works-student' %}" class="nav-item">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-text">Мої роботи</span>
+        </a>
+      </nav>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Вийти</span>
+        </button>
+      </form>
+    </aside>
+
+    <main class="main-content">
+      <div class="main-header">
+        <h1 class="page-title">Курс: {{ course.title }}</h1>
+      </div>
+
+      <div class="course-detail-container">
+        <div class="course-detail-card">
+          <!-- Прогрес бар та інформація -->
+          <div class="course-progress">
+            <div class="progress-header">
+              <span>Ваш прогрес</span>
+              <span class="progress-percent">{{ progress_percent }}%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: {{ progress_percent }}%;"></div>
+            </div>
+            <div class="progress-info">
+              <span>{{ submitted_tasks }} з {{ total_tasks }} завдань здано</span>
+              {% if graded_tasks > 0 %}
+                <span>Середня оцінка: {{ average_grade }}</span>
+                <span>{{ graded_tasks }} оцінених завдань</span>
+              {% else %}
+                <span>Ще немає оцінок</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Список завдань -->
+          <div class="assignments-section">
+            <h2 class="section-title">Завдання курсу</h2>
+
+            {% if assignment_data %}
+              <div class="assignments-list">
+                {% for item in assignment_data %}
+                  <div class="assignment-card {% if item.is_submitted %}submitted{% endif %}">
+                    <div class="assignment-header">
+                      <h3>{{ item.assignment.title }}</h3>
+                      <span class="deadline">
+                        <i class="far fa-calendar-alt"></i>
+                        До {{ item.assignment.deadline|date:'d.m.Y H:i' }}
+                      </span>
+                    </div>
+
+                    <p class="assignment-description">{{ item.assignment.description }}</p>
+
+                    <div class="assignment-status">
+                      {% if item.is_submitted %}
+                        {% if item.is_graded %}
+                          <span class="status-badge graded">
+                            <i class="fas fa-check-circle"></i>
+                            Оцінено: {{ item.grade|floatformat }}/100
+                          </span>
+                        {% else %}
+                          <span class="status-badge submitted">
+                            <i class="fas fa-paper-plane"></i>
+                            Здано (очікує оцінки)
+                          </span>
+                        {% endif %}
+
+                        {% if item.submission.file %}
+                          <a href="{{ item.submission.file.url }}" class="btn-view-file" target="_blank"><i class="fas fa-file-download"></i> Переглянути файл</a>
+                        {% endif %}
+                      {% else %}
+                        <span class="status-badge not-submitted">
+                          <i class="far fa-clock"></i>
+                          Не здано
+                        </span>
+                        <a href="{% url 'assignments-student-view' assignment_id=item.assignment.id %}" class="btn-submit">Здати завдання</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <p class="no-assignments">У цьому курсі ще немає завдань.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
