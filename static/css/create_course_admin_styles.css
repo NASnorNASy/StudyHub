@@ -248,7 +248,7 @@ body {
     text-decoration: none;
 }
 
-.actions-buttons{
+.actions-buttons {
     display: flex;
     gap: 16px;
     justify-content: space-evenly;

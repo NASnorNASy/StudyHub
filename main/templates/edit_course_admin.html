@@ -65,31 +65,31 @@
               value="{{ course.title }}"
               required
             />
-            </div>
-            <div class="form-group">
-              <label for="id_description">Опис курсу:</label>
-              <textarea
+          </div>
+          <div class="form-group">
+            <label for="id_description">Опис курсу:</label>
+            <textarea
                 id="id_description"
                 name="description"
                 class="description-input"
-              >{{ course.description }}</textarea>
-            </div>
-            <div class="form-group">
-              <label for="id_teacher">Викладач:</label>
-              <select id="id_teacher" name="teacher" class="teacher-select" required>
-                {% for teacher in teachers %}
-                  <option value="{{ teacher.id }}" {% if course.teacher.id == teacher.id %}selected{% endif %}>
-                    {{ teacher.first_name }} {{ teacher.last_name }}
-                  </option>
-                {% endfor %}
-              </select>
-            </div>
+            >{{ course.description }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="id_teacher">Викладач:</label>
+            <select id="id_teacher" name="teacher" class="teacher-select" required>
+              {% for teacher in teachers %}
+                <option value="{{ teacher.id }}" {% if course.teacher.id == teacher.id %}selected{% endif %}>
+                  {{ teacher.first_name }} {{ teacher.last_name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
             <div class="actions-buttons">
               <button type="submit" class="submit-btn">Зберегти зміни</button>
               <a href="{% url 'home-admin' %}" class="cancel-btn">Скасувати</a>
             </div>
         </form>
-        </div>
+      </div>
     </main>
-    </body>
+  </body>
 </html>

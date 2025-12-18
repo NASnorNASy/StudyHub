@@ -80,58 +80,14 @@
                 </div>
               </div>
               <div class="join-btn">
-                <a href="{% url 'course-view-student' course.id %}">
-                <button class="course-btn">Відкрити курс <i class="fa fa-arrow-right"></i></button>
-                </a>
+                <a href="{% url 'course-view-student' course.id %}"><button class="course-btn">Відкрити курс <i class="fa fa-arrow-right"></i></button></a>
               </div>
             </div>
           {% endfor %}
         {% else %}
-          <p>Ви ще не доєдналися до жодного курсу.</p>
+          <p class="nothing">Ви ще не доєдналися до жодного курсу.</p>
         {% endif %}
       </div>
-      {% comment %}
-      <div class="progress-container">
-        <div class="progress-header">
-          <div class="progress-title">
-            <i class="fas fa-chart-line"></i>
-            <span>Прогрес курсу</span>
-          </div>
-          <div class="progress-percentage">10%</div>
-        </div>
-
-        <p class="progress-text">Пройдено курсу</p>
-
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-
-        <div class="stats-container">
-          <div class="stat-box stat-completed">
-            <div class="stat-number">1</div>
-            <div class="stat-label">
-              <i class="fas fa-check-circle"></i>
-              <span>Виконано</span>
-            </div>
-          </div>
-
-          <div class="stat-box stat-remaining">
-            <div class="stat-number">1</div>
-            <div class="stat-label">
-              <i class="fas fa-clock"></i>
-              <span>Залишилось</span>
-            </div>
-          </div>
-
-          <div class="stat-box stat-average">
-            <div class="stat-number">95</div>
-            <div class="stat-label">
-              <i class="fas fa-star"></i>
-              <span>Середній бал</span>
-            </div>
-          </div>
-        </div>
-      </div> {% endcomment %}
     </main>
   </body>
 </html>

@@ -63,58 +63,56 @@
       <div class="main-header">
         <h1 class="page-title">Мої завдання</h1>
       </div>
+      <div class="tasks-container">
+        {% for item in assignments_student_list %}
+          {% if item.assignment.id %}
+            <a href="{% url 'assignments-student-view' assignment_id=item.assignment.id %}" class="task-link">
+              <div class="task-card">
+                <div class="task-header">
+                  {% if item.has_submitted %}
+                    <div class="task-status status-success">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Роботу здано</span>
+                    </div>
+                  {% else %}
+                    <div class="task-status status-pending">
+                      <i class="fas fa-clock"></i>
+                      <span>Очікує виконання</span>
+                    </div>
+                  {% endif %}
+                </div>
 
-      <!-- Змінили назву змінної на 'assignments_student_list' та ітеруємо як 'item' -->
-      {% for item in assignments_student_list %}
-        {% if item.assignment.id %}
-          <!-- Посилання використовує item.assignment.id -->
-          <a href="{% url 'assignments-student-view' assignment_id=item.assignment.id %}" class="task-link">
-            <div class="task-card">
-              <div class="task-header">
-                <!-- Використовуємо item.has_submitted -->
-                {% if item.has_submitted %}
-                  <div class="task-status status-success">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Роботу здано</span>
+                <div class="task-title">
+                  <div class="task-details">
+                    <h3>{{ item.assignment.title }}</h3>
+                    <p class="task-course">{{ item.assignment.course.title }}</p>
                   </div>
-                {% else %}
-                  <div class="task-status status-pending">
-                    <i class="fas fa-clock"></i>
-                    <span>Очікує виконання</span>
-                  </div>
-                {% endif %}
-              </div>
+                </div>
 
-              <div class="task-title">
-                <div class="task-details">
-                  <h3>{{ item.assignment.title }}</h3>
-                  <p class="task-course">{{ item.assignment.course.title }}</p>
+                <p class="task-description">{{ item.assignment.description|truncatechars:55 }}</p>
+
+                <div class="task-submission">
+                  {% if item.has_submitted %}
+                    <div class="submission-info">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Здано</span>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="task-deadline">
+                  <i class="far fa-calendar-alt"></i>
+                  <span>Дедлайн: <span class="deadline-date">{{ item.assignment.deadline|date:'d M Y H:i' }}</span></span>
                 </div>
               </div>
-
-              <p class="task-description">{{ item.assignment.description|truncatechars:100 }}</p>
-
-              <div class="task-submission">
-                {% if item.has_submitted %}
-                  <div class="submission-info">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Здано</span> <!-- Просто статус "Здано", без дати -->
-                  </div>
-                {% endif %}
-              </div>
-
-              <div class="task-deadline">
-                <i class="far fa-calendar-alt"></i>
-                <span>Дедлайн: <span class="deadline-date">{{ item.assignment.deadline|date:'d M Y H:i' }}</span></span>
-              </div>
-            </div>
-          </a>
-        {% else %}
-          <div class="task-card">Завдання {{ item.assignment.title }} має помилку ID.</div>
-        {% endif %}
-      {% empty %}
-        <p>У вас немає завдань.</p>
-      {% endfor %}
+            </a>
+          {% else %}
+            <div class="task-card">Завдання {{ item.assignment.title }} має помилку ID.</div>
+          {% endif %}
+        {% empty %}
+          <p class="nothing">У вас немає завдань.</p>
+        {% endfor %}
+      </div>
     </main>
   </body>
 </html>

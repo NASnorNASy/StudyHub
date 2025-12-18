@@ -63,39 +63,33 @@
       <div class="main-header">
         <h1 class="page-title">Мої роботи</h1>
       </div>
-        {% for item in assignments_student_list %}
-          {% if item.has_submitted %}
-            <div class="assignment-card">
-              <div class="card-content-wrapper">
-                <div class="assignment-details">
-                  <div>
-                    <h3>{{ item.assignment.title }}</h3>
-                    <p class="task-course">{{ item.assignment.course.title }}</p>
+      {% for item in assignments_student_list %}
+        {% if item.has_submitted %}
+          <div class="assignment-card">
+            <div class="card-content-wrapper">
+              <div class="assignment-details">
+                <div class="title-card">{{ item.assignment.title }}</div>
+                <div class="course-card">{{ item.assignment.course.title }}</div>
+                <p class="file-card">
+                  Файл: <strong>{{ item.submission.file.name|cut:'submissions/' }}</strong>
+                </p>
+              </div>
+
+              <div class="assignment-actions">
+                {% if item.score is not None %}
+                  <div class="score-badge">
+                    <span>★ {{ item.score|floatformat }}</span>
                   </div>
-                </div>
+                {% endif %}
 
-                <div class="submission-meta">
-                  <p>
-                    Файл: <strong>{{ item.submission.file.name|cut:'submissions/' }}</strong>
-                  </p>
-                  <p>Здано</p>
-                </div>
-
-                <div class="assignment-actions">
-                  {% if item.score is not None %}
-                    <div class="score-badge">
-                      <span>★ {{ item.score|floatformat }}</span>
-                    </div>
-                  {% endif %}
-
-                  <a href="{{ item.submission.file.url }}" class="btn download-btn" download>⬇️ Завантажити</a>
-                </div>
+                <a href="{{ item.submission.file.url }}" class="btn download-btn" download><i class="fas fa-download"></i>Завантажити</a>
               </div>
             </div>
-          {% endif %}
-        {% empty %}
-          <p>У вас немає зданих робіт.</p>
-        {% endfor %}
+          </div>
+        {% endif %}
+      {% empty %}
+        <p class="nothing">У вас немає зданих робіт.</p>
+      {% endfor %}
     </main>
   </body>
 </html>

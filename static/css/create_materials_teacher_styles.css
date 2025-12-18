@@ -235,17 +235,18 @@ body {
 }
 
 .file-input::file-selector-button {
-    background-color: var(--primary-purple); 
-  color: white;
-  padding: 5px 10px; 
-  border: none; 
-  border-radius: 50px; 
-  cursor: pointer; 
-  font-size: 16px; 
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
 }
+
 .file-input::file-selector-button:hover {
-    background-color: rgba(56, 0, 116, 0.921); 
-    
+    background-color: rgba(56, 0, 116, 0.921);
+
 }
 
 
@@ -281,4 +282,11 @@ body {
 .nothing {
     text-align: center;
     color: #5a5a5a;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 24px;
+
 }

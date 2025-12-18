@@ -80,7 +80,7 @@
               <div class="enroll-icon">
                 <form method="post" action="{% url 'join-course' course.id %}">
                   {% csrf_token %}
-                  <button type="submit" class="enroll-btn"><i class="fa-solid fa-user-plus"></i> Записатися</button>
+                  <button type="submit" class="enroll-btn"><i class="fa-solid fa-user-plus"></i> Зареєструватися</button>
                 </form>
               </div>
             {% else %}
@@ -90,6 +90,8 @@
               </div>
             {% endif %}
           </div>
+        {% empty %}
+          <p class="nothing">Жоден викладач поки не додав курсу.</p>
         {% endfor %}
       </div>
       {% if courses.paginator.num_pages > 1 %}
@@ -99,7 +101,7 @@
               <a href="?page={{ courses.previous_page_number }}" class="btn-pag"><i class="fas fa-arrow-left" aria-hidden="true"></i></a>
             {% endif %}
 
-            <span class="current">{{ courses.number }} | {{ courses.paginator.num_pages }}</span>
+            <span>{{ courses.number }} | {{ courses.paginator.num_pages }}</span>
 
             {% if courses.has_next %}
               <a href="?page={{ courses.next_page_number }}" class="btn-pag"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>

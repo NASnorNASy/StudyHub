@@ -11,7 +11,7 @@ urlpatterns = [
         views.course_view_student,
         name="course-view-student",
     ),
-    path("courses-join/<int:course_id>/", views.join_course, name="join-course"),
+    path("join-course/<int:course_id>/", views.join_course, name="join-course"),
     path("all-courses-student/", views.all_courses_student, name="all-courses-student"),
     path("materials-student/", views.materials_student, name="materials-student"),
     path(
@@ -61,8 +61,16 @@ urlpatterns = [
         views.view_course_admin,
         name="view-course-admin",
     ),
-    path("delete-materials-admin/<int:material_id>/", views.delete_materials_admin, name="delete-materials-admin"),
-    path("delete-assignments-admin/<int:assignment_id>/", views.delete_assignments_admin, name="delete-assignments-admin"),
+    path(
+        "delete-materials-admin/<int:material_id>/",
+        views.delete_materials_admin,
+        name="delete-materials-admin",
+    ),
+    path(
+        "delete-assignments-admin/<int:assignment_id>/",
+        views.delete_assignments_admin,
+        name="delete-assignments-admin",
+    ),
     path(
         "edit-course-admin/<int:course_id>/",
         views.edit_course_admin,

@@ -45,7 +45,7 @@ def redirect_to_group(user):
 
 def register_view(request):
     error_user = ""
-    error_emeil = ""
+    error_email = ""
     error_password = ""
     if request.method == "POST":
         first_name = request.POST.get("first_name")
@@ -59,7 +59,7 @@ def register_view(request):
         if User.objects.filter(username=username).exists():
             error_user = "Користувач з таким ім'ям вже існує."
         elif User.objects.filter(email=email).exists():
-            error_emeil = "Користувач з таким email вже існує."
+            error_email = "Користувач з таким email вже існує."
         elif password != password2:
             error_password = "Паролі не співпадають."
         else:
@@ -90,7 +90,7 @@ def register_view(request):
         "register.html",
         {
             "error_user": error_user,
-            "error_emeil": error_emeil,
+            "error_email": error_email,
             "error_password": error_password,
         },
     )
@@ -230,14 +230,14 @@ def assignments_student(request):
         course__students=request.user
     ).select_related("course")
 
-    assignments_list_for_template = []
+    assignments_list = []
 
     for assignment in all_assignments:
         has_submitted = Submission.objects.filter(
             assignment=assignment, student=user
         ).exists()
 
-        assignments_list_for_template.append(
+        assignments_list.append(
             {
                 "assignment": assignment,
                 "has_submitted": has_submitted,
@@ -248,7 +248,7 @@ def assignments_student(request):
         request,
         "assignments_student.html",
         {
-            "assignments_student_list": assignments_list_for_template,
+            "assignments_student_list": assignments_list,
         },
     )
 
@@ -290,7 +290,7 @@ def my_works_student(request):
         course__students=request.user
     ).select_related("course")
 
-    assignments_list_for_template = []
+    assignments_list = []
 
     for assignment in all_assignments:
         submission_obj = None
@@ -304,7 +304,7 @@ def my_works_student(request):
         except Submission.DoesNotExist:
             pass
 
-        assignments_list_for_template.append(
+        assignments_list.append(
             {
                 "assignment": assignment,
                 "has_submitted": has_submitted,
@@ -317,7 +317,7 @@ def my_works_student(request):
         request,
         "my_works_student.html",
         {
-            "assignments_student_list": assignments_list_for_template,
+            "assignments_student_list": assignments_list,
         },
     )
 
@@ -385,7 +385,7 @@ def create_materials_teacher(request):
 
         if not course or not title or not description or not file:
             error = "Всі поля повинні бути заповнені."
-            return render(request, "create_course_teacher.html", {"error": error})
+            return render(request, "create_materials_teacher.html", {"error": error})
 
         Material.objects.create(
             course=course, title=title, description=description, file=file

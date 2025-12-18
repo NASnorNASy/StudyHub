@@ -174,70 +174,6 @@ body {
     border-bottom: 2px solid #e1e1e1;
 }
 
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.search-container {
-    position: relative;
-}
-
-.search-input {
-    padding: 14px 20px 14px 48px;
-    border-radius: 50px;
-    border: 1px solid #E5E7EB;
-    width: 280px;
-    font-size: 16px;
-    background-color: var(--text-white);
-    transition: var(--transition);
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-purple);
-    box-shadow: 0 0 0 3px rgba(108, 77, 255, 0.1);
-}
-
-.search-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    background: none;
-    border: none;
-}
-
-
-.add-btn {
-    background-color: var(--primary-purple);
-    color: var(--text-white);
-    border: none;
-    padding: 14px 24px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition);
-    text-decoration: none;
-}
-
-.add-btn:hover {
-    background-color: var(--primary-purple-light);
-    box-shadow: 0 4px 12px rgba(108, 77, 255, 0.3);
-}
-
-.materials-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
 .material-card {
     background-color: var(--white);
     border-radius: 20px;
@@ -333,10 +269,6 @@ hr {
     display: flex;
     align-items: center;
     gap: 12px;
-}
-
-.file-icon {
-    color: var(--primary-purple);
 }
 
 .file-name {

@@ -12,11 +12,9 @@ class Course(models.Model):
         limit_choices_to={"groups__name": "Викладач"},
         verbose_name="Викладач",
     )
-    
+
     students = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="courses",
-        blank=True
+        settings.AUTH_USER_MODEL, related_name="courses", blank=True
     )
 
     def __str__(self):
@@ -93,9 +91,7 @@ class Submission(models.Model):
 
 class Comment(models.Model):
     material = models.ForeignKey(
-        Material,
-        related_name="comments",
-        on_delete=models.CASCADE
+        Material, related_name="comments", on_delete=models.CASCADE
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()

@@ -84,7 +84,7 @@
         </a>
       </div>
       <hr />
-      <section class="comments">
+      <section>
         <div class="comment-card">
           {% for comment in comments %}
             <div class="comment">
@@ -106,7 +106,7 @@
         <form method="post" class="comment-form">
           {% csrf_token %}
           <textarea name="text" rows="3" class="textarea-chat" placeholder="Напишіть коментар або запитання..." required></textarea>
-          <button class="send-btn" type="submit" ><i class="fas fa-paper-plane"></i></button>
+          <button class="send-btn" type="submit"><i class="fas fa-paper-plane"></i></button>
         </form>
       </section>
     </main>

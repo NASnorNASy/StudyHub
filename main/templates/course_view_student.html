@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Мої курси</title>
+    <title>Мій курс</title>
     <link rel="shortcut icon" type="image/jpg" href="{% static 'images/icon_book.jpg' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,19 +66,18 @@
 
       <div class="course-detail-container">
         <div class="course-detail-card">
-          <!-- Прогрес бар та інформація -->
-          <div class="course-progress">
+          <div class="progress-container">
             <div class="progress-header">
               <span>Ваш прогрес</span>
-              <span class="progress-percent">{{ progress_percent }}%</span>
+              <span class="progress-percentage">{{ progress_percent }}%</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: {{ progress_percent }}%;"></div>
             </div>
             <div class="progress-info">
-              <span>{{ submitted_tasks }} з {{ total_tasks }} завдань здано</span>
+              <span class=""><i class="fas fa-check-circle"></i> {{ submitted_tasks }} з {{ total_tasks }} завдань здано</span>
               {% if graded_tasks > 0 %}
-                <span>Середня оцінка: {{ average_grade }}</span>
+                <span><i class="fas fa-star"></i> Середня оцінка: {{ average_grade }}</span>
                 <span>{{ graded_tasks }} оцінених завдань</span>
               {% else %}
                 <span>Ще немає оцінок</span>
@@ -86,7 +85,6 @@
             </div>
           </div>
 
-          <!-- Список завдань -->
           <div class="assignments-section">
             <h2 class="section-title">Завдання курсу</h2>
 
@@ -113,13 +111,9 @@
                           </span>
                         {% else %}
                           <span class="status-badge submitted">
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-check-circle"></i>
                             Здано (очікує оцінки)
                           </span>
-                        {% endif %}
-
-                        {% if item.submission.file %}
-                          <a href="{{ item.submission.file.url }}" class="btn-view-file" target="_blank"><i class="fas fa-file-download"></i> Переглянути файл</a>
                         {% endif %}
                       {% else %}
                         <span class="status-badge not-submitted">
@@ -133,7 +127,7 @@
                 {% endfor %}
               </div>
             {% else %}
-              <p class="no-assignments">У цьому курсі ще немає завдань.</p>
+              <p class="nothing">У цьому курсі ще немає завдань.</p>
             {% endif %}
           </div>
         </div>

@@ -153,14 +153,12 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
 .main-content {
     flex: 1;
     margin-left: var(--sidebar-width);
     padding: 48px;
     max-width: 1200px;
 }
-
 
 .page-title {
     font-size: 26px;

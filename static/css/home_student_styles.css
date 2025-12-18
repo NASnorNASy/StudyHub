@@ -326,7 +326,8 @@ body {
 .stat-average .stat-number {
     color: #00ff9d;
 }
-.course-btn{
+
+.course-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -341,11 +342,13 @@ body {
     transition: all 0.3s ease;
     gap: 10px;
 }
+
 .course-btn:hover {
     background-color: #7b21f5;
     box-shadow: 0 4px 12px rgba(138, 42, 253, 0.3);
 }
-.join-btn{
+
+.join-btn {
     align-self: flex-end;
 }
 

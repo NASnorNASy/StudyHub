@@ -160,7 +160,6 @@ body {
     max-width: 1200px;
 }
 
-
 .page-title {
     font-size: 26px;
     font-weight: 600;
@@ -177,7 +176,6 @@ body {
 }
 
 .tasks-container {
-    padding: 30px 40px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -191,7 +189,7 @@ body {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 25px;
+    padding: 15px 25px;
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid #f0f0f0;
 }
@@ -214,6 +212,7 @@ body {
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 14px;
+    gap: 10px;
     font-weight: 500;
 }
 
@@ -257,13 +256,18 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    color: #666;
+    color: var(--gray-dark);
     font-size: 14px;
+    background-color: rgba(242, 242, 242, 0.289);
+    border-radius: 50px;
+    padding: 5px;
+    width: fit-content;
+    font-size: 13px;
 }
 
 .task-deadline i {
     margin-right: 8px;
-    color: #FFA000;
+    color: var(--gray-dark);
 }
 
 .deadline-date {
@@ -286,38 +290,6 @@ body {
 .submission-info i {
     margin-right: 8px;
     color: #4CAF50;
-}
-
-.submission-date {
-    font-weight: 500;
-    color: #2e7d32;
-}
-
-.file-upload {
-    border: 2px dashed #d1c4e9;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f7fd;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.file-upload:hover {
-    background-color: #f3e5f5;
-    border-color: #7b1fa2;
-}
-
-.file-upload i {
-    font-size: 28px;
-    color: #7b1fa2;
-    margin-bottom: 10px;
-}
-
-.file-upload p {
-    color: #7b1fa2;
-    font-weight: 500;
-    font-size: 16px;
 }
 
 .nothing {
